@@ -8,7 +8,7 @@ Contents
 
 Includes the following plugins:
 
-* [vim-pathogen](https://github.com/tpope/vim-pathogen)
+* [tpope/vim-pathogen](https://github.com/tpope/vim-pathogen)
 
 * [vim-scripts/bufkill.vim](https://github.com/vim-scripts/bufkill.vim.git)
 * [mileszs/ack.vim](https://github.com/mileszs/ack.vim.git)
