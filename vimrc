@@ -41,6 +41,8 @@ set wildmenu
 set wildmode=list:longest
 set wildignore=.git,*.swp,*/tmp/*
 
+set sessionoptions-=help
+
 set backupdir=~/.vim/tmp,/var/tmp,/tmp
 set directory=~/.vim/tmp,/var/tmp,/tmp
 
@@ -67,6 +69,9 @@ nnoremap <Right> :echoe "Use L"<CR>
 nnoremap <Up> :echoe "Use K"<CR>
 nnoremap <Down> :echoe "Use J"<CR>
 
+nmap <C-s><C-s> :SaveSession<CR>
+nmap <C-s><C-r> :OpenSession<CR>
+
 inoremap <silent> <home> <C-O>:call Home()<CR>
 nnoremap <silent> <home> :call Home()<CR>
 function Home()
@@ -85,4 +90,6 @@ call pathogen#infect()
 nnoremap <leader>d :NERDTreeToggle<cr>
 
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols='fancy'
+let g:session_autoload=0
+let g:session_autosave=1
