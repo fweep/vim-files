@@ -86,3 +86,6 @@
 	path = bundle/zencoding-vim
 	url = https://github.com/mattn/zencoding-vim.git
 	ignore = untracked
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
