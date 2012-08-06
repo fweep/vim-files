@@ -82,3 +82,7 @@
 	path = bundle/vim-session
 	url = https://github.com/xolox/vim-session.git
 	ignore = untracked
+[submodule "bundle/zencoding-vim"]
+	path = bundle/zencoding-vim
+	url = https://github.com/mattn/zencoding-vim.git
+	ignore = untracked
