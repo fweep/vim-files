@@ -94,5 +94,4 @@ let g:Powerline_symbols='fancy'
 let g:session_autoload=0
 let g:session_autosave=1
 
-"autocmd QuickFixCmdPost *grep* cwindow
-autocmd QuickFixCmdPost * cwindow
+autocmd QuickFixCmdPost *grep* cwindow
