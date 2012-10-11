@@ -1,14 +1,6 @@
-[submodule "bundle/bufkill.vim"]
-	path = bundle/bufkill.vim
-	url = https://github.com/vim-scripts/bufkill.vim.git
-	ignore = untracked
 [submodule "bundle/ack.vim"]
 	path = bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
-	ignore = untracked
-[submodule "bundle/bufexplorer.zip"]
-	path = bundle/bufexplorer.zip
-	url = https://github.com/vim-scripts/bufexplorer.zip.git
 	ignore = untracked
 [submodule "bundle/CSApprox"]
 	path = bundle/CSApprox
@@ -92,3 +84,6 @@
 [submodule "bundle/vim-eunuch"]
 	path = bundle/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch.git
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git

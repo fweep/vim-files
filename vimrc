@@ -29,6 +29,7 @@ set shortmess=aTI
 set laststatus=2
 set showmatch
 set matchtime=0
+"set showtabline=2
 
 set hlsearch
 set incsearch
@@ -46,9 +47,6 @@ set sessionoptions-=help
 set backupdir=~/.vim/tmp,/var/tmp,/tmp
 set directory=~/.vim/tmp,/var/tmp,/tmp
 
-"set listchars=tab:>-,trail:·,eol:$,extends:>
-"nmap <silent> <leader>s :set nolist!<CR>
-
 let mapleader = ","
 
 set pastetoggle=<F2>
@@ -63,11 +61,6 @@ nmap <C-l> :bn<CR>
 imap <khome> <home>
 nmap <khome> <home>
 map <C-v><BS> X
-
-nnoremap <Left> :echoe "Use H"<CR>
-nnoremap <Right> :echoe "Use L"<CR>
-nnoremap <Up> :echoe "Use K"<CR>
-nnoremap <Down> :echoe "Use J"<CR>
 
 nmap <C-s><C-s> :SaveSession<CR>
 nmap <C-s><C-r> :OpenSession<CR>
@@ -88,9 +81,13 @@ runtime macros/matchit.vim
 call pathogen#infect()
 
 nnoremap <leader>d :NERDTreeToggle<cr>
+nnoremap <F8> :TagbarToggle<CR>
+nnoremap <leader>b :BuffergatorOpen<CR>
 
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 let g:Powerline_symbols='fancy'
+let g:buffergator_suppress_keymaps=1
+
 let g:session_autoload=0
 let g:session_autosave=1
 
