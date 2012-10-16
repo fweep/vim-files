@@ -92,3 +92,5 @@ let g:session_autoload=0
 let g:session_autosave=1
 
 autocmd QuickFixCmdPost *grep* cwindow
+
+let g:syntastic_disabled_filetypes = ['cucumber']
