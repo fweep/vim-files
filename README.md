@@ -22,6 +22,9 @@ Includes the following plugins:
 * [vim-scripts/bufkill.vim](https://github.com/vim-scripts/bufkill.vim.git)
   Buffer unload/delete/wipe without closing the current window.
 
+* [Conque-Shell](http://code.google.com/p/conque/)
+  Interactive shell in a window.
+
 * [vim-scripts/CSApprox](https://github.com/vim-scripts/CSApprox.git)
   Approximates GUI colorschemes in terminal Vim.
 
@@ -91,7 +94,7 @@ Includes the following plugins:
 * [vim-scripts/ZoomWin](https://github.com/vim-scripts/ZoomWin.git)
   Temporarily make the current window the only one visible, then restore layout.
 
-Plugins are Git submodules, except for pathogen.
+Most plugins are Git submodules.  Pathogen is intentionally not a submodule.  Conque-Shell is installed from source because the vim-scripts version is missing the Python files.
 
 If the author maintains a GitHub account, their repository is used.  If not,
 the [vim-scripts](https://github.com/vim-scripts) version is used.  If
