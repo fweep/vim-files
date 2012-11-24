@@ -1,12 +1,18 @@
 set nocompatible
 set encoding=utf-8
 
+syntax on
+filetype plugin indent on
+
+call pathogen#infect()
+
 set t_Co=256
 set term=xterm-256color
 
-colorscheme railscasts
-syntax on
-filetype plugin indent on
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+set background=dark
+colorscheme solarized
 
 set hidden
 set history=1000
@@ -49,6 +55,8 @@ set sessionoptions-=help
 set backupdir=~/.vim/tmp,/var/tmp,/tmp
 set directory=~/.vim/tmp,/var/tmp,/tmp
 
+set showtabline=2
+
 let mapleader = ","
 
 set pastetoggle=<F2>
@@ -81,8 +89,6 @@ endfunction
 runtime macros/matchit.vim
 
 nmap <unique> <C-w>w <Plug>ZoomWin
-
-call pathogen#infect()
 
 nnoremap <leader>d :NERDTreeToggle<cr>
 nnoremap <F8> :TagbarToggle<CR>
