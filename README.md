@@ -5,6 +5,9 @@ This is my current Vim configuration.  It's intended to be reusable by anyone, b
 
 In addition to the plugins below, there's a heavily-modified tabline styled after vim-powerline.  My intention is to split the modifications off into a separate plugin when it's complete.
 
+It uses the railscasts colorscheme, slightly modified in after/plugin/CSApprox.vim to tweak some colors.  The solarized colorscheme is included, and my goal is to solarize everything (include powerline).
+I'm not happy with the lack of Ruby highlighting provided by the default solarized theme yet.
+
 Contents
 --------
 
