@@ -125,46 +125,89 @@ let g:syntastic_disabled_filetypes = ['cucumber']
 
 "TODO: move to plugins
 
-function MyTabLine()
+function! FweepParseChars(arg)
+  "TODO: attribution to powerline
+  let arg = a:arg
+  if type(arg) == type([])
+    call map(arg, 'nr2char(v:val)')
+    return join(arg, '')
+  endif
+  return arg
+endfunction
+
+function FweepTabLine()
+  let dividers = [ [0x2b80], [0x2b81], [0x2b82], [0x2b83] ]
+  let divider_hard = FweepParseChars(deepcopy(dividers[0]))
+  let divider_soft = FweepParseChars(deepcopy(dividers[1]))
+
+  exec 'hi FweepTabLineTabNumber ctermbg=235 ctermfg=33'
+  exec 'hi FweepTabLineWindowCount ctermbg=235 ctermfg=33'
+  exec 'hi FweepTabLineModifiedFlag ctermbg=235 ctermfg=red'
+  exec 'hi FweepTabLineTabNumberSel ctermbg=239 ctermfg=33'
+  exec 'hi FweepTabLineWindowCountSel ctermbg=239 ctermfg=33'
+  exec 'hi FweepTabLineModifiedFlagSel ctermbg=239 ctermfg=red'
+  exec 'hi FweepTabLine ctermfg=244 ctermbg=235'
+  exec 'hi FweepTabLineSel cterm=reverse ctermfg=239 ctermbg=187'
+  exec 'hi FweepTabLineFill ctermfg=244 ctermbg=235'
+  exec 'hi FweepTabLineDivider cterm=reverse ctermfg=239 ctermbg=235'
+  exec 'hi FweepTabLineDividerSel ctermbg=235 ctermfg=239'
+
   let s = ''
-  for i in range(tabpagenr('$'))
-    if i + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    else
-      let s .= '%#TabLine#'
+
+  let current_tab_number = tabpagenr()
+  let tab_count = tabpagenr('$')
+
+  for tab_index in range(tab_count)
+
+    let tab_number = tab_index + 1
+    let buffer_list = tabpagebuflist(tab_number)
+    let window_number = tabpagewinnr(tab_number)
+    let buffer_name = bufname(buffer_list[window_number - 1])
+    let number_of_windows = tabpagewinnr(tab_number, '$')
+
+    let sel = ''
+    if tab_number == current_tab_number
+      let sel = 'Sel'
     endif
-    let s .= '%' . (i + 1) . 'T'
-    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+
+    "TODO: use vim default highlight groups where possible
+    let tab_highlight = '%#FweepTabLine' . sel . '#'
+    let s .= tab_highlight . ' '
+    let s .= '%' . tab_number . 'T'
+    let s .= '%#FweepTabLineTabNumber' . sel . '#' .tab_number . tab_highlight
+
+    if number_of_windows > 1
+      let s .= ':' . '%#FweepTabLineWindowCount' . sel . '#' . number_of_windows . tab_highlight
+    endif
+
+    for buffer_number in buffer_list
+      let buffer_modified = getbufvar(buffer_number, '&modified')
+      if buffer_modified
+        let s .= ' ' . '%#FweepTabLineModifiedFlag' . sel . '#+' . tab_highlight
+      endif
+    endfor
+
+    if buffer_name != ''
+      let s .= ' ' . pathshorten(buffer_name)
+    else
+      let s .= ' [No Name]'
+    endif
+
+    let s .= '%T '
+
+    if (current_tab_number == tab_number || current_tab_number == (tab_number + 1))
+      let s .= '%#FweepTabLineDivider' . sel . '#' . divider_hard . tab_highlight
+    elseif tab_number != tab_count
+      let s .= divider_soft
+    endif
+
+    "divider
+
   endfor
-  let s .= '%T%=%#TabLineFill#'
-  if tabpagenr('$') > 1
-    let s .= '%=%#TabLine#%999Xclose'
-  endif
-  return s
-endfunction
 
-function MyTabLabel(tab_number)
-  "TODO: allow manual setting of current tab name
-  let buffer_list = tabpagebuflist(a:tab_number)
-  let window_number = tabpagewinnr(a:tab_number)
-  let buffer_name = bufname(buffer_list[window_number - 1])
-  let buffer_modified = getbufvar(a:tab_number, '&modified')
-  let number_of_windows = tabpagewinnr(a:tab_number, '$')
-
-  let s = a:tab_number
-  if number_of_windows > 1
-    let s .= ':' . window_number
-  endif
-  if buffer_modified
-    let s .= ' +'
-  endif
-  if buffer_name != ''
-    let s .= ' ' . pathshorten(buffer_name)
-  else
-    let s .= ' [No Name]'
-  endif
+  let s .= '%#FweepTabLineFill#%=%999XX'
 
   return s
 endfunction
 
-set tabline=%!MyTabLine()
+set tabline=%!FweepTabLine()
