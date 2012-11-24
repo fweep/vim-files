@@ -80,6 +80,8 @@ endfunction
 
 runtime macros/matchit.vim
 
+nmap <unique> <C-w>w <Plug>ZoomWin
+
 call pathogen#infect()
 
 nnoremap <leader>d :NERDTreeToggle<cr>
