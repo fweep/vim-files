@@ -121,7 +121,11 @@ let g:yankring_default_menu_mode = 0
 
 autocmd QuickFixCmdPost *grep* cwindow
 
-let g:syntastic_disabled_filetypes = ['cucumber']
+let g:syntastic_disabled_filetypes = ['cucumber'] "FIXME: don't think this is disabling
+
+let g:ConqueTerm_InsertOnEnter = 1
+let g:ConqueTerm_CWInsert = 1
+let g:ConqueTerm_TERM = 'xterm-256color'
 
 "TODO: move to plugins
 
