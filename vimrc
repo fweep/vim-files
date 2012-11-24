@@ -87,7 +87,7 @@ nnoremap <Leader>9 :tabnext 9<CR>
 nmap <C-s><C-s> :SaveSession<CR>
 nmap <C-s><C-r> :OpenSession<CR>
 
-nnoremap <silent> <F11> :YRShow<CR>
+nnoremap <silent> <F12> :YRShow<CR>
 
 inoremap <silent> <home> <C-O>:call Home()<CR>
 nnoremap <silent> <home> :call Home()<CR>
