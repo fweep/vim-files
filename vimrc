@@ -105,7 +105,7 @@ runtime macros/matchit.vim
 nmap <unique> <C-w>w <Plug>ZoomWin
 
 nnoremap <leader>d :NERDTreeToggle<cr>
-nnoremap <F8> :TagbarToggle<CR>
+nnoremap <F6> :TagbarToggle<CR>
 
 let g:buffergator_suppress_keymaps=1
 nnoremap <leader><leader> :BuffergatorToggle<CR>
