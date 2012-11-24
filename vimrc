@@ -74,6 +74,16 @@ imap <khome> <home>
 nmap <khome> <home>
 map <C-v><BS> X
 
+nnoremap <Leader>1 :tabnext 1<CR>
+nnoremap <Leader>2 :tabnext 2<CR>
+nnoremap <Leader>3 :tabnext 3<CR>
+nnoremap <Leader>4 :tabnext 4<CR>
+nnoremap <Leader>5 :tabnext 5<CR>
+nnoremap <Leader>6 :tabnext 6<CR>
+nnoremap <Leader>7 :tabnext 7<CR>
+nnoremap <Leader>8 :tabnext 8<CR>
+nnoremap <Leader>9 :tabnext 9<CR>
+
 nmap <C-s><C-s> :SaveSession<CR>
 nmap <C-s><C-r> :OpenSession<CR>
 
