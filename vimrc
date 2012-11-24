@@ -16,6 +16,9 @@ set shiftwidth=2
 set expandtab
 set backspace=indent,eol,start
 
+set foldmethod=syntax
+set foldlevel=20
+
 set nowrap
 set scrolloff=4
 set sidescrolloff=10
@@ -29,7 +32,6 @@ set shortmess=aTI
 set laststatus=2
 set showmatch
 set matchtime=0
-"set showtabline=2
 
 set hlsearch
 set incsearch
@@ -56,8 +58,8 @@ nnoremap <C-e> 4<C-e>
 nnoremap <C-y> 4<C-y>
 nmap <silent> <C-n> :silent :nohlsearch<CR>
 imap <silent> <S-tab> <C-v><tab>
-nmap <C-h> :bp<CR>
-nmap <C-l> :bn<CR>
+nmap <C-j> :bp<CR>
+nmap <C-k> :bn<CR>
 imap <khome> <home>
 nmap <khome> <home>
 map <C-v><BS> X
@@ -82,11 +84,12 @@ call pathogen#infect()
 
 nnoremap <leader>d :NERDTreeToggle<cr>
 nnoremap <F8> :TagbarToggle<CR>
-nnoremap <leader>b :BuffergatorOpen<CR>
+
+let g:buffergator_suppress_keymaps=1
+nnoremap <leader><leader> :BuffergatorToggle<CR>
 
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 let g:Powerline_symbols='fancy'
-let g:buffergator_suppress_keymaps=1
 
 let g:session_autoload=0
 let g:session_autosave=1
