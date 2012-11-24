@@ -90,3 +90,6 @@
 [submodule "bundle/bufkill.vim"]
 	path = bundle/bufkill.vim
 	url = https://github.com/vim-scripts/bufkill.vim.git
+[submodule "bundle/YankRing"]
+	path = bundle/YankRing
+	url = https://github.com/vim-scripts/YankRing.vim.git
