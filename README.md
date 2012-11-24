@@ -1,7 +1,9 @@
 vimfiles
 ========
 
-This is my current Vim configuration.
+This is my current Vim configuration.  It's intended to be reusable by anyone, but is currently in a hacky state.
+
+In addition to the plugins below, there's a heavily-modified tabline styled after vim-powerline.  My intention is to split the modifications off into a separate plugin when it's complete.
 
 Contents
 --------
