@@ -139,22 +139,45 @@ function! FweepParseChars(arg)
   return arg
 endfunction
 
-function FweepTabLine()
+function! FweepSetTabName(tab_number, label)
+  if !exists("g:fweep_tab_names")
+    let g:fweep_tab_names = {}
+  endif
+  let g:fweep_tab_names[a:tab_number] = a:label
+  redraw!
+endfunction
+
+function! FweepClearTabName(tab_number)
+  if exists("g:fweep_tab_names")
+    let removed_tab_name = get(g:fweep_tab_names, a:tab_number, "***NONEFOUND***")
+    if removed_tab_name != "***NONEFOUND***"
+      let removed = remove(g:fweep_tab_names, a:tab_number) "unlet g:fweep_tab_names[a:tab_number]
+      redraw!
+    endif
+  endif
+endfunction
+
+function! FweepTabLine()
+  if !exists("g:fweep_tab_names")
+    let g:fweep_tab_names = {}
+  endif
   let dividers = [ [0x2b80], [0x2b81], [0x2b82], [0x2b83] ]
   let divider_hard = FweepParseChars(deepcopy(dividers[0]))
   let divider_soft = FweepParseChars(deepcopy(dividers[1]))
 
   exec 'hi FweepTabLineTabNumber ctermbg=235 ctermfg=33'
-  exec 'hi FweepTabLineWindowCount ctermbg=235 ctermfg=33'
-  exec 'hi FweepTabLineModifiedFlag ctermbg=235 ctermfg=red'
   exec 'hi FweepTabLineTabNumberSel ctermbg=239 ctermfg=33'
+  exec 'hi FweepTabLineWindowCount ctermbg=235 ctermfg=33'
   exec 'hi FweepTabLineWindowCountSel ctermbg=239 ctermfg=33'
+  exec 'hi FweepTabLineModifiedFlag ctermbg=235 ctermfg=red'
   exec 'hi FweepTabLineModifiedFlagSel ctermbg=239 ctermfg=red'
   exec 'hi FweepTabLine ctermfg=244 ctermbg=235'
   exec 'hi FweepTabLineSel cterm=reverse ctermfg=239 ctermbg=187'
   exec 'hi FweepTabLineFill ctermfg=244 ctermbg=235'
   exec 'hi FweepTabLineDivider cterm=reverse ctermfg=239 ctermbg=235'
   exec 'hi FweepTabLineDividerSel ctermbg=235 ctermfg=239'
+  exec 'hi FweepTabLineUserLabel ctermfg=173 ctermbg=235'
+  exec 'hi FweepTabLineUserLabelSel ctermfg=173 ctermbg=239'
 
   let s = ''
 
@@ -174,7 +197,6 @@ function FweepTabLine()
       let sel = 'Sel'
     endif
 
-    "TODO: use vim default highlight groups where possible
     let tab_highlight = '%#FweepTabLine' . sel . '#'
     let s .= tab_highlight . ' '
     let s .= '%' . tab_number . 'T'
@@ -184,18 +206,35 @@ function FweepTabLine()
       let s .= ':' . '%#FweepTabLineWindowCount' . sel . '#' . number_of_windows . tab_highlight
     endif
 
+    let modified = 0
     for buffer_number in buffer_list
       let buffer_modified = getbufvar(buffer_number, '&modified')
       if buffer_modified
-        let s .= ' ' . '%#FweepTabLineModifiedFlag' . sel . '#+' . tab_highlight
+        let modified = 1
       endif
     endfor
 
-    if buffer_name != ''
-      let s .= ' ' . pathshorten(buffer_name)
-    else
-      let s .= ' [No Name]'
+    if modified
+      let s .= ' ' . '%#FweepTabLineModifiedFlag' . sel . '#+' . tab_highlight
     endif
+
+    if buffer_name != ''
+      let default_tab_label = pathshorten(buffer_name)
+    else
+      let default_tab_label = '[No Name]'
+    endif
+
+    "FIXME: figure out why this doesn't work:
+    " let user_label = get(g:fweep_tab_names, tab_number)
+    " if user_label == 0
+    let user_label = get(g:fweep_tab_names, tab_number, "***NONEFOUND***")
+    if user_label == "***NONEFOUND***"
+      let tab_label = default_tab_label
+    else
+      let tab_label = '%#FweepTabLineUserLabel' . sel . '#' . user_label . tab_highlight
+    endif
+
+    let s .= ' ' . tab_label
 
     let s .= '%T '
 
