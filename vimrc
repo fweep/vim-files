@@ -24,12 +24,9 @@ set shiftwidth=2
 set expandtab
 set backspace=indent,eol,start
 
-set foldmethod=syntax
-set foldlevel=20
-
 set nowrap
-set scrolloff=4
-set sidescrolloff=10
+set scrolloff=8
+set sidescrolloff=20
 set sidescroll=1
 
 set title
@@ -64,29 +61,32 @@ let mapleader = ","
 set pastetoggle=<F2>
 nnoremap ' `
 nnoremap ` '
-nnoremap <C-e> 4<C-e>
-nnoremap <C-y> 4<C-y>
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
-imap <silent> <S-tab> <C-v><tab>
-nmap <C-j> :bp<CR>
-nmap <C-k> :bn<CR>
-imap <khome> <home>
-nmap <khome> <home>
-map <C-v><BS> X
+nnoremap <C-k> :bp<CR>
+nnoremap <C-j> :bn<CR>
 
-nnoremap <Leader>1 :tabnext 1<CR>
-nnoremap <Leader>2 :tabnext 2<CR>
-nnoremap <Leader>3 :tabnext 3<CR>
-nnoremap <Leader>4 :tabnext 4<CR>
-nnoremap <Leader>5 :tabnext 5<CR>
-nnoremap <Leader>6 :tabnext 6<CR>
-nnoremap <Leader>7 :tabnext 7<CR>
-nnoremap <Leader>8 :tabnext 8<CR>
-nnoremap <Leader>9 :tabnext 9<CR>
+" Why are these here?
+noremap <C-v><BS> X
+inoremap <khome> <home>
+nnoremap <khome> <home>
 
-nmap <C-s><C-s> :SaveSession<CR>
-nmap <C-s><C-r> :OpenSession<CR>
+nnoremap <silent> <Leader>1 :tabnext 1<CR>
+nnoremap <silent> <Leader>2 :tabnext 2<CR>
+nnoremap <silent> <Leader>3 :tabnext 3<CR>
+nnoremap <silent> <Leader>4 :tabnext 4<CR>
+nnoremap <silent> <Leader>5 :tabnext 5<CR>
+nnoremap <silent> <Leader>6 :tabnext 6<CR>
+nnoremap <silent> <Leader>7 :tabnext 7<CR>
+nnoremap <silent> <Leader>8 :tabnext 8<CR>
+nnoremap <silent> <Leader>9 :tabnext 9<CR>
 
+let g:session_autoload=0
+let g:session_autosave=1
+noremap <C-s><C-s> :SaveSession<CR>
+nnoremap <C-s><C-r> :OpenSession<CR>
+
+let g:yankring_window_height = 10
+let g:yankring_default_menu_mode = 0
 nnoremap <silent> <F12> :YRShow<CR>
 
 inoremap <silent> <home> <C-O>:call Home()<CR>
@@ -100,10 +100,13 @@ function Home()
     endif
 endfunction
 
+" Open help in a full-height vertical split at the right.
+cnoreabbrev <expr> help getcmdtype() == ':' && getcmdline() == 'help' ? 'vert bo h' : 'help'
+cnoreabbrev <expr> h getcmdtype() == ':' && getcmdline() == 'h' ? 'vert bo h' : 'h'
+
 runtime macros/matchit.vim
 
-nmap <unique> <C-w>w <Plug>ZoomWin
-
+nnoremap <unique> <C-w>w <Plug>ZoomWin
 nnoremap <leader>d :NERDTreeToggle<cr>
 nnoremap <F6> :TagbarToggle<CR>
 
@@ -113,13 +116,10 @@ nnoremap <leader><leader> :BuffergatorToggle<CR>
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 let g:Powerline_symbols='fancy'
 
-let g:session_autoload=0
-let g:session_autosave=1
-
-let g:yankring_window_height = 10
-let g:yankring_default_menu_mode = 0
-
 autocmd QuickFixCmdPost *grep* cwindow
+
+autocmd FileType vim setlocal foldmethod=marker foldlevel=0
+autocmd FileType ruby setlocal foldmethod=syntax foldlevel=20
 
 let g:syntastic_disabled_filetypes = ['cucumber'] "FIXME: don't think this is disabling
 
@@ -127,6 +127,14 @@ let g:ConqueTerm_InsertOnEnter = 1
 let g:ConqueTerm_CWInsert = 1
 let g:ConqueTerm_TERM = 'xterm-256color'
 
-set tabline=%!tabline#TabLine()
+set tabline=%!tabber#TabLine()
 
-nnoremap <silent> <C-t> :TabLineNew<CR>
+nnoremap <C-t> :999TabberNew<CR>
+nnoremap <C-e> :TabberSelectLastActive<CR>
+
+if filereadable('.vimrc-project')
+  source .vimrc-project
+endif
+
+" let g:tabber_default_unknown_label = 'Unknown'
+let g:tabber_default_user_label = 'Scratch'
