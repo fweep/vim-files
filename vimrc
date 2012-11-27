@@ -16,21 +16,33 @@ set term=xterm-256color
 
 colorscheme railscasts "NOTE: modifications need to go in after/plugin/CSApprox.vim
 
+set nomodeline
+set undofile
+set undodir=~/.vim/undo
+
 set hidden
 set history=1000
 
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
 set backspace=indent,eol,start
 
 set nowrap
+set textwidth=72
 set scrolloff=8
 set sidescrolloff=20
 set sidescroll=1
 
 set title
+set ttimeoutlen=50
+set autoread
+set virtualedit=block
+set lazyredraw
+set cmdheight=2
 set number
+set numberwidth=4
 set visualbell t_vb=
 set noerrorbells
 set shortmess=aTI
@@ -42,6 +54,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set gdefault
 
 set list listchars=tab:>·,trail:·,nbsp:·,extends:>
 
@@ -59,14 +72,22 @@ set showtabline=2
 let mapleader = ","
 
 set pastetoggle=<F2>
+nmap <F1> <nop>
 nnoremap ' `
 nnoremap ` '
-nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
+nnoremap Y y$
+inoremap <C-o> <C-\><C-o>
+nnoremap <Leader><space> :nohlsearch<CR>
 nnoremap <C-k> :bp<CR>
 nnoremap <C-j> :bn<CR>
 
+nnoremap <C-w>v <C-w>v<C-w>l
+nnoremap <C-w>s <C-w>s<C-w>j
+
+nnoremap / /\v
+vnoremap / /\v
+
 " Why are these here?
-noremap <C-v><BS> X
 inoremap <khome> <home>
 nnoremap <khome> <home>
 
@@ -108,18 +129,37 @@ runtime macros/matchit.vim
 
 nnoremap <unique> <C-w>w <Plug>ZoomWin
 nnoremap <leader>d :NERDTreeToggle<cr>
+nnoremap <F5> :GundoToggle<CR>
 nnoremap <F6> :TagbarToggle<CR>
 
 let g:buffergator_suppress_keymaps=1
 nnoremap <leader><leader> :BuffergatorToggle<CR>
 
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
 let g:Powerline_symbols='fancy'
+let g:Powerline_theme = 'fweep'
 
 autocmd QuickFixCmdPost *grep* cwindow
 
-autocmd FileType vim setlocal foldmethod=marker foldlevel=0
-autocmd FileType ruby setlocal foldmethod=syntax foldlevel=20
+autocmd FileType vim call SetVimScriptFileTypeOptions()
+autocmd FileType ruby call SetRubyFileTypeOptions()
+
+autocmd VimEnter * if !argc() | NERDTree | endif
+
+function! SetRubyFileTypeOptions()
+  setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
+  autocmd BufEnter          * if &ft ==# 'ruby' | setlocal cursorline | endif
+  autocmd BufLeave,WinLeave * if &ft ==# 'ruby' | setlocal nocursorline | endif
+endfunction
+
+function! SetVimScriptFileTypeOptions()
+  setlocal foldmethod=marker foldlevel=0 formatoptions-=o
+  autocmd BufEnter          * if &ft ==# 'vim' | setlocal cursorline | endif
+  autocmd BufLeave,WinLeave * if &ft ==# 'vim' | setlocal nocursorline | endif
+endfunction
+
+command! Vimrc botright vsplit ~/.vimrc
 
 let g:syntastic_disabled_filetypes = ['cucumber'] "FIXME: don't think this is disabling
 
@@ -134,9 +174,7 @@ nnoremap <C-e> :TabberSelectLastActive<CR>
 nnoremap < :TabberShiftLeft<CR>
 nnoremap > :TabberShiftRight<CR>
 
-if filereadable('.vimrc-project')
-  source .vimrc-project
-endif
+if filereadable('.vimrc-project') | source .vimrc-project | endif
 
 let g:tabber_wrap_when_shifting = 1
 " let g:tabber_default_unknown_label = 'Unknown'
