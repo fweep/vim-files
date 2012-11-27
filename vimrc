@@ -142,10 +142,21 @@ let g:Powerline_theme = 'fweep'
 
 autocmd QuickFixCmdPost *grep* cwindow
 
-autocmd FileType vim call SetVimScriptFileTypeOptions()
+"Move these to ~/.vim/ftplugin (or wherever it looks)
+autocmd FileType vim  call SetVimScriptFileTypeOptions()
 autocmd FileType ruby call SetRubyFileTypeOptions()
+autocmd FileType zsh  call SetZshFileTypeOptions()
 
-autocmd VimEnter * if !argc() | NERDTree | endif
+" autocmd VimEnter * if !argc() | NERDTree | endif
+
+autocmd BufRead,BufNewFile *.zsh       setlocal filetype=zsh
+autocmd BufRead,BufNewFile *.zsh-theme setlocal filetype=zsh
+
+function! SetZshFileTypeOptions()
+  setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
+  autocmd BufEnter          * if &ft ==# 'zsh' | setlocal cursorline | endif
+  autocmd BufLeave,WinLeave * if &ft ==# 'zsh' | setlocal nocursorline | endif
+endfunction
 
 function! SetRubyFileTypeOptions()
   setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
@@ -159,7 +170,11 @@ function! SetVimScriptFileTypeOptions()
   autocmd BufLeave,WinLeave * if &ft ==# 'vim' | setlocal nocursorline | endif
 endfunction
 
-command! Vimrc botright vsplit ~/.vimrc
+command! Vimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | botright vsplit ~/.vimrc | endif
+
+function! CurrentBufferIsEmpty()
+  return line('$') == 1 && getline(1) == ''
+endfunction
 
 let g:syntastic_disabled_filetypes = ['cucumber'] "FIXME: don't think this is disabling
 
