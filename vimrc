@@ -131,10 +131,14 @@ set tabline=%!tabber#TabLine()
 
 nnoremap <C-t> :999TabberNew<CR>
 nnoremap <C-e> :TabberSelectLastActive<CR>
+nnoremap < :TabberShiftLeft<CR>
+nnoremap > :TabberShiftRight<CR>
 
 if filereadable('.vimrc-project')
   source .vimrc-project
 endif
 
+let g:tabber_wrap_when_shifting = 1
 " let g:tabber_default_unknown_label = 'Unknown'
-let g:tabber_default_user_label = 'Scratch'
+" let g:tabber_default_user_label = 'Scratch'
+" let g:tabber_prompt_for_new_label = 1

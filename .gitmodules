@@ -90,6 +90,3 @@
 [submodule "bundle/bufkill.vim"]
 	path = bundle/bufkill.vim
 	url = https://github.com/vim-scripts/bufkill.vim.git
-[submodule "bundle/vim-tabber"]
-	path = bundle/vim-tabber
-	url = git@github.com:fweep/vim-tabber.git
