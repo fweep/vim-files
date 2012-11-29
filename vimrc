@@ -6,6 +6,9 @@ filetype plugin indent on
 
 call pathogen#infect()
 
+set runtimepath+=~/.vim-local
+runtime vimrc-local
+
 set t_Co=256
 set term=xterm-256color
 
@@ -30,7 +33,7 @@ set expandtab
 set backspace=indent,eol,start
 
 set nowrap
-set textwidth=72
+"set textwidth=72
 set scrolloff=8
 set sidescrolloff=20
 set sidescroll=1
@@ -76,7 +79,6 @@ nmap <F1> <nop>
 nnoremap ' `
 nnoremap ` '
 nnoremap Y y$
-inoremap <C-o> <C-\><C-o>
 nnoremap <Leader><space> :nohlsearch<CR>
 nnoremap <C-k> :bp<CR>
 nnoremap <C-j> :bn<CR>
@@ -91,27 +93,18 @@ vnoremap / /\v
 inoremap <khome> <home>
 nnoremap <khome> <home>
 
-nnoremap <silent> <Leader>1 :tabnext 1<CR>
-nnoremap <silent> <Leader>2 :tabnext 2<CR>
-nnoremap <silent> <Leader>3 :tabnext 3<CR>
-nnoremap <silent> <Leader>4 :tabnext 4<CR>
-nnoremap <silent> <Leader>5 :tabnext 5<CR>
-nnoremap <silent> <Leader>6 :tabnext 6<CR>
-nnoremap <silent> <Leader>7 :tabnext 7<CR>
-nnoremap <silent> <Leader>8 :tabnext 8<CR>
-nnoremap <silent> <Leader>9 :tabnext 9<CR>
-
 let g:session_autoload=0
 let g:session_autosave=1
 noremap <C-s><C-s> :SaveSession<CR>
 nnoremap <C-s><C-r> :OpenSession<CR>
 
-let g:yankring_window_height = 10
-let g:yankring_default_menu_mode = 0
-nnoremap <silent> <F12> :YRShow<CR>
+" let g:yankring_window_height = 10
+" let g:yankring_default_menu_mode = 0
+" nnoremap <silent> <F12> :YRShow<CR>
 
 inoremap <silent> <home> <C-O>:call Home()<CR>
 nnoremap <silent> <home> :call Home()<CR>
+
 function Home()
     let curcol = wincol()
     normal ^
@@ -154,20 +147,20 @@ autocmd BufRead,BufNewFile *.zsh-theme setlocal filetype=zsh
 
 function! SetZshFileTypeOptions()
   setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
-  autocmd BufEnter          * if &ft ==# 'zsh' | setlocal cursorline | endif
-  autocmd BufLeave,WinLeave * if &ft ==# 'zsh' | setlocal nocursorline | endif
+  autocmd BufWinEnter       * if &ft ==# 'zsh' | setlocal cursorline | endif
+  autocmd BufWinLeave       * if &ft ==# 'zsh' | setlocal nocursorline | endif
 endfunction
 
 function! SetRubyFileTypeOptions()
   setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
-  autocmd BufEnter          * if &ft ==# 'ruby' | setlocal cursorline | endif
-  autocmd BufLeave,WinLeave * if &ft ==# 'ruby' | setlocal nocursorline | endif
+  autocmd BufWinEnter       * if &ft ==# 'ruby' | setlocal cursorline | endif
+  autocmd BufWinLeave       * if &ft ==# 'ruby' | setlocal nocursorline | endif
 endfunction
 
 function! SetVimScriptFileTypeOptions()
   setlocal foldmethod=marker foldlevel=0 formatoptions-=o
-  autocmd BufEnter          * if &ft ==# 'vim' | setlocal cursorline | endif
-  autocmd BufLeave,WinLeave * if &ft ==# 'vim' | setlocal nocursorline | endif
+  autocmd BufWinEnter       * if &ft ==# 'vim' | setlocal cursorline | endif
+  autocmd BufWinLeave       * if &ft ==# 'vim' | setlocal nocursorline | endif
 endfunction
 
 command! Vimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | botright vsplit ~/.vimrc | endif
@@ -176,22 +169,8 @@ function! CurrentBufferIsEmpty()
   return line('$') == 1 && getline(1) == ''
 endfunction
 
-let g:syntastic_disabled_filetypes = ['cucumber'] "FIXME: don't think this is disabling
-
 let g:ConqueTerm_InsertOnEnter = 1
 let g:ConqueTerm_CWInsert = 1
 let g:ConqueTerm_TERM = 'xterm-256color'
 
-set tabline=%!tabber#TabLine()
-
-nnoremap <C-t> :999TabberNew<CR>
-nnoremap <C-e> :TabberSelectLastActive<CR>
-nnoremap < :TabberShiftLeft<CR>
-nnoremap > :TabberShiftRight<CR>
-
 if filereadable('.vimrc-project') | source .vimrc-project | endif
-
-let g:tabber_wrap_when_shifting = 1
-" let g:tabber_default_unknown_label = 'Unknown'
-" let g:tabber_default_user_label = 'Scratch'
-" let g:tabber_prompt_for_new_label = 1
