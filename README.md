@@ -1,12 +1,14 @@
 vimfiles
 ========
 
-This is my current Vim configuration.  It's intended to be reusable by anyone, but is currently in a hacky state.
+This is my current Vim configuration.  Uses Solarized (dark).  Plugins
+are primarily targeted at Rails and Vimscript development.
 
-In addition to the plugins below, there's a heavily-modified tabline styled after vim-powerline.  My intention is to split the modifications off into a separate plugin when it's complete.
+Requirements
+------------
 
-It uses the railscasts colorscheme, slightly modified in after/plugin/CSApprox.vim to tweak some colors.  The solarized colorscheme is included, and my goal is to solarize everything (include powerline).
-I'm not happy with the lack of Ruby highlighting provided by the default solarized theme yet.
+* Font patched for [Powerline](https://github.com/Lokaltog/vim-powerline.git).
+* [Solarized](https://github.com/altercation/solarized) terminal.
 
 Contents
 --------
@@ -24,9 +26,6 @@ Includes the following plugins:
 
 * [Conque-Shell](http://code.google.com/p/conque/)
   Interactive shell in a window.
-
-* [vim-scripts/CSApprox](https://github.com/vim-scripts/CSApprox.git)
-  Approximates GUI colorschemes in terminal Vim.
 
 * [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim.git)
   Fuzzy file/buffer/tag finder.
