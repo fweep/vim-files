@@ -56,7 +56,7 @@ set wildmode=list:longest
 set wildignore=.git,*.swp,*/tmp/*
 set sessionoptions-=help
 
-let mapLeader = ','
+let mapleader = ','
 
 set pastetoggle=<F2>
 nnoremap ' `
@@ -65,7 +65,7 @@ nnoremap Y y$
 nnoremap <Leader><space> :nohlsearch<CR>
 nnoremap <C-k> :bprevious<CR>
 nnoremap <C-j> :bnext<CR>
-nnoremap <C-d> :bdelete<CR>
+nnoremap <C-d> :quit<CR>
 nnoremap / /\v
 vnoremap / /\v
 inoremap <khome> <home> " Why are these here?
@@ -124,6 +124,8 @@ autocmd FileType zsh  call SetZshFileTypeOptions()
 
 autocmd BufRead,BufNewFile *.zsh       setlocal filetype=zsh
 autocmd BufRead,BufNewFile *.zsh-theme setlocal filetype=zsh
+
+autocmd BufRead,BufNewFile README.md   setlocal wrap textwidth=72 formatoptions-=lc formatoptions+=t
 
 function! SetZshFileTypeOptions()
   setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
