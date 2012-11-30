@@ -155,10 +155,6 @@ let g:ConqueTerm_InsertOnEnter = 1
 let g:ConqueTerm_CWInsert = 1
 let g:ConqueTerm_TERM = 'xterm-256color'
 
-"Map Align's functions to something just to get them out of the ,r namespace.
-map <unique> <Leader>aswp <Plug>SaveWinPosn
-map <unique> <Leader>arwp <Plug>RestoreWinPosn
-
 nnoremap <Leader>r <Plug>RubyTestRun
 nnoremap <Leader>R <Plug>RubyFileRun
 

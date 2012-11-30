@@ -95,9 +95,6 @@
 [submodule "bundle/AsyncCommand"]
 	path = bundle/AsyncCommand
 	url = https://github.com/pydave/AsyncCommand.git
-[submodule "bundle/Align"]
-	path = bundle/Align
-	url = https://github.com/vim-scripts/Align.git
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
