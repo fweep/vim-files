@@ -1,4 +1,4 @@
-vimfiles
+vim-files
 ========
 
 This is my current Vim configuration.  Uses Solarized (dark).  Plugins
