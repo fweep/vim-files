@@ -15,7 +15,7 @@ colorscheme solarized
 " Disable underline for folds.
 highlight Folded cterm=NONE
 
-set nomodeline
+set modeline
 set hidden
 set history=1000
 set tabstop=2
@@ -145,7 +145,8 @@ function! SetVimScriptFileTypeOptions()
   autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'vim' | setlocal nocursorline | endif
 endfunction
 
-command! Vimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | botright vsplit ~/.vimrc | endif
+command! Svimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | botright vsplit ~/.vimrc | endif
+command! Vvimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | split ~/.vimrc | endif
 
 function! CurrentBufferIsEmpty()
   return line('$') == 1 && getline(1) == ''
@@ -155,8 +156,9 @@ let g:ConqueTerm_InsertOnEnter = 1
 let g:ConqueTerm_CWInsert = 1
 let g:ConqueTerm_TERM = 'xterm-256color'
 
-nnoremap <Leader>r <Plug>RubyTestRun
-nnoremap <Leader>R <Plug>RubyFileRun
+let g:rubytest_spec_drb = 1
+" nnoremap <Leader>r <Plug>RubyTestRun
+" nnoremap <Leader>R <Plug>RubyFileRun
 
 if filereadable('.vimrc-project') | source .vimrc-project | endif
 if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
