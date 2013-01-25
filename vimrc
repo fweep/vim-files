@@ -26,6 +26,7 @@ set nowrap
 set sidescrolloff=20
 set sidescroll=1
 set scrolloff=8
+set nobackup
 set nowritebackup
 set undofile
 set undodir=~/.vim/undo
@@ -55,6 +56,8 @@ set wildmenu
 set wildmode=list:longest
 set wildignore=.git,*.swp,*/tmp/*
 set sessionoptions-=help
+set ttymouse=xterm2
+set mouse=a
 
 let mapleader = ','
 
