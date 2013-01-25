@@ -50,10 +50,6 @@
 	path = bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
 	ignore = untracked
-[submodule "bundle/vim-rubytest"]
-	path = bundle/vim-rubytest
-	url = https://github.com/janx/vim-rubytest.git
-	ignore = untracked
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
