@@ -24,11 +24,11 @@ Includes the following plugins:
 * [vim-scripts/bufkill.vim](https://github.com/vim-scripts/bufkill.vim.git)
   Buffer unload/delete/wipe without closing the current window.
 
-* [Conque-Shell](http://code.google.com/p/conque/)
-  Interactive shell in a window.
-
 * [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim.git)
   Fuzzy file/buffer/tag finder.
+
+* [sjl/gundo](url = http://github.com/sjl/gundo.vim.git)
+  Visualize undo tree.
 
 * [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree.git)
   Directory navigation & bookmarks.
@@ -45,6 +45,9 @@ Includes the following plugins:
 * [majutsushi/tagbar](https://github.com/majutsushi/tagbar.git)
   Navigate code based on CTAGS.
 
+* tslime
+  Interact with tmux.
+
 * [tpope/vim-abolish](https://github.com/tpope/vim-abolish.git)
   Case-insensitive-but-case-preserving search-and-replace, CamelCase-to-snakecase refactoring.
 
@@ -56,6 +59,9 @@ Includes the following plugins:
 
 * [kchmck/vim-coffee-script](https://github.com/kchmck/vim-coffee-script.git)
   [CoffeeScript](http://coffeescript.org) syntax highlighting and more.
+
+* [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized.git)
+  Solarized colorscheme.
 
 * [tpope/vim-commentary](https://github.com/tpope/vim-commentary.git)
   Quick code commenting.
@@ -80,6 +86,9 @@ Includes the following plugins:
 
 * [janx/vim-rubytest](https://github.com/janx/vim-rubytest.git)
   Run Ruby tests.
+
+* [xolox/vim-session](https://github.com/xolox/vim-session.git)
+  Save/load named sessions.
 
 * [tpope/vim-surround](https://github.com/tpope/vim-surround.git)
   Refactor quotes/tags around text.
