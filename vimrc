@@ -45,7 +45,7 @@ set noerrorbells
 set shortmess=aTI
 set showmatch
 set matchtime=0
-set ttimeoutlen=50
+set timeout timeoutlen=500 ttimeoutlen=50
 set hlsearch
 set incsearch
 set ignorecase
@@ -71,20 +71,28 @@ nnoremap <C-j> :bnext<CR>
 nnoremap <C-d> :quit<CR>
 nnoremap / /\v
 vnoremap / /\v
-inoremap <khome> <home> " Why are these here?
-nnoremap <khome> <home>
 
-inoremap <silent> <home> <C-O>:call Home()<CR>
-nnoremap <silent> <home> :call Home()<CR>
+"Various broken (at least in KiTTY) attempts at home key stuff.
 
-function Home()
-    let curcol = wincol()
-    normal ^
-    let newcol = wincol()
-    if newcol == curcol
-        normal 0
-    endif
-endfunction
+" nnoremap [1~ <home>
+
+" inoremap <khome> <home> " Why are these here?
+" nnoremap <khome> <home>
+
+" noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
+" imap <silent> <Home> <C-O><Home>
+
+" inoremap <silent> <home> <C-O>:call Home()<CR>
+" nnoremap <silent> <home> :call Home()<CR>
+
+" function Home()
+"     let curcol = wincol()
+"     normal ^
+"     let newcol = wincol()
+"     if newcol == curcol
+"         normal 0
+"     endif
+" endfunction
 
 " Open help in a full-height vertical split at the right.
 cnoreabbrev <expr> help getcmdtype() == ':' && getcmdline() == 'help' ? 'vert bo h' : 'help'
@@ -130,6 +138,12 @@ autocmd BufRead,BufNewFile *.zsh-theme setlocal filetype=zsh
 
 autocmd BufRead,BufNewFile README.md   setlocal wrap textwidth=72 formatoptions-=lc formatoptions+=t
 
+augroup local_buffergator
+  autocmd!
+  autocmd BufEnter \[\[buffergator-buffers\]\] unmap ds
+  autocmd BufLeave \[\[buffergator-buffers\]\] nmap ds <Plug>Dsurround
+augroup END
+
 function! SetZshFileTypeOptions()
   setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
   autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'zsh' | setlocal cursorline | endif
@@ -148,20 +162,16 @@ function! SetVimScriptFileTypeOptions()
   autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'vim' | setlocal nocursorline | endif
 endfunction
 
-command! Svimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | botright vsplit ~/.vimrc | endif
-command! Vvimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | split ~/.vimrc | endif
+command! Vvimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | botright vsplit ~/.vimrc | endif
+command! Svimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | split ~/.vimrc | endif
 
 function! CurrentBufferIsEmpty()
   return line('$') == 1 && getline(1) == ''
 endfunction
 
-let g:ConqueTerm_InsertOnEnter = 1
-let g:ConqueTerm_CWInsert = 1
-let g:ConqueTerm_TERM = 'xterm-256color'
-
 let g:rubytest_spec_drb = 1
-" nnoremap <Leader>r <Plug>RubyTestRun
-" nnoremap <Leader>R <Plug>RubyFileRun
+map <Leader>r <Plug>RubyTestRun
+map <Leader>R <Plug>RubyFileRun
 
 if filereadable('.vimrc-project') | source .vimrc-project | endif
 if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
