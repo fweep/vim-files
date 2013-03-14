@@ -133,8 +133,9 @@ autocmd FileType vim  call SetVimScriptFileTypeOptions()
 autocmd FileType ruby call SetRubyFileTypeOptions()
 autocmd FileType zsh  call SetZshFileTypeOptions()
 
-autocmd BufRead,BufNewFile *.zsh       setlocal filetype=zsh
-autocmd BufRead,BufNewFile *.zsh-theme setlocal filetype=zsh
+autocmd BufRead,BufNewFile *.zsh                            setlocal filetype=zsh
+autocmd BufRead,BufNewFile *.zsh-theme                      setlocal filetype=zsh
+autocmd BufRead,BufNewFile Guardfile,.Guardfileset,.guardrc setlocal filetype=ruby
 
 autocmd BufRead,BufNewFile README.md   setlocal wrap textwidth=72 formatoptions-=lc formatoptions+=t
 

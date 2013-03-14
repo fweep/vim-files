@@ -93,3 +93,6 @@
 [submodule "bundle/vim-obsession"]
 	path = bundle/vim-obsession
 	url = git://github.com/tpope/vim-obsession.git
+[submodule "bundle/vim-scriptease"]
+	path = bundle/vim-scriptease
+	url = git://github.com/tpope/vim-scriptease.git
