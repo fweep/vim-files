@@ -62,7 +62,7 @@ set previewheight=20
 
 let mapleader = ','
 
-set pastetoggle=<F2>
+set pastetoggle=<Leader>p
 nnoremap ' `
 nnoremap ` '
 nnoremap Y y$
