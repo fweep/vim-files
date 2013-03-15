@@ -58,6 +58,7 @@ set wildignore=.git,*.swp,*/tmp/*
 set sessionoptions-=help
 set ttymouse=xterm2
 set mouse=a
+set previewheight=20
 
 let mapleader = ','
 
@@ -94,7 +95,6 @@ vnoremap / /\v
 "     endif
 " endfunction
 
-" Open help in a full-height vertical split at the right.
 cnoreabbrev <expr> help getcmdtype() == ':' && getcmdline() == 'help' ? 'vert bo h' : 'help'
 cnoreabbrev <expr> h getcmdtype() == ':' && getcmdline() == 'h' ? 'vert bo h' : 'h'
 
@@ -132,6 +132,7 @@ autocmd QuickFixCmdPost *grep* cwindow
 autocmd FileType vim  call SetVimScriptFileTypeOptions()
 autocmd FileType ruby call SetRubyFileTypeOptions()
 autocmd FileType zsh  call SetZshFileTypeOptions()
+autocmd FileType make setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
 
 autocmd BufRead,BufNewFile *.zsh                            setlocal filetype=zsh
 autocmd BufRead,BufNewFile *.zsh-theme                      setlocal filetype=zsh
@@ -165,6 +166,7 @@ endfunction
 
 command! Vvimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | botright vsplit ~/.vimrc | endif
 command! Svimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | split ~/.vimrc | endif
+command! Vimrc  Vvimrc
 
 function! CurrentBufferIsEmpty()
   return line('$') == 1 && getline(1) == ''
