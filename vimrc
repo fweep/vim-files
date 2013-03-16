@@ -176,6 +176,7 @@ let g:rubytest_spec_drb = 1
 map <Leader>r <Plug>RubyTestRun
 map <Leader>R <Plug>RubyFileRun
 
-if filereadable('.vimrc-project') | source .vimrc-project | endif
+let g:blockle_mapping = '<Leader>bl'
 
+if filereadable('.vimrc-project') | source .vimrc-project | endif
 if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
