@@ -60,18 +60,10 @@ set ttymouse=xterm2
 set mouse=a
 set previewheight=20
 
-if has("cscope")
-  set cscopetag cscopequickfix=s-,c-,d-,i-,t-,e-
-  set nocscopeverbose
-  if filereadable(".git/cscope.out")
-    cscope add .git/cscope.out
-  endif
-  set cscopeverbose
-endif
+set pastetoggle=<F2>
 
 let mapleader = ','
 
-set pastetoggle=<F2>
 nnoremap ' `
 nnoremap ` '
 nnoremap Y y$
@@ -81,6 +73,28 @@ nnoremap <C-j> :bnext<CR>
 nnoremap <C-d> :quit<CR>
 nnoremap / /\v
 vnoremap / /\v
+
+if has("cscope")
+  set nocscopetag
+  set cscopequickfix=s-,c-,d-,i-,t-,e-
+  set nocscopeverbose
+  if filereadable(".git/cscope.out")
+    cscope add .git/cscope.out
+  endif
+  set cscopeverbose
+
+  "TODO: figure out which of these are useless in Ruby and disable them.
+  nnoremap <Leader>fs :cscope find s <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+  nnoremap <Leader>fg :cscope find g <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+  nnoremap <Leader>fc :cscope find c <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+  nnoremap <Leader>ft :cscope find t <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+  nnoremap <Leader>fe :cscope find e <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+  nnoremap <Leader>ff :cscope find f <C-R>=expand("<cfile>")<CR><CR>:botright cwindow<CR>
+  nnoremap <Leader>fd :cscope find d <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+  nnoremap <Leader>fi :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>:botright cwindow<CR>
+  "TODO: figure out how to get cstag output in quickfix or a popup menu.
+  map <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
+endif
 
 "Various broken (at least in KiTTY) attempts at home key stuff.
 
