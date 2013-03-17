@@ -60,9 +60,18 @@ set ttymouse=xterm2
 set mouse=a
 set previewheight=20
 
+if has("cscope")
+  set cscopetag cscopequickfix=s-,c-,d-,i-,t-,e-
+  set nocscopeverbose
+  if filereadable(".git/cscope.out")
+    cscope add .git/cscope.out
+  endif
+  set cscopeverbose
+endif
+
 let mapleader = ','
 
-set pastetoggle=<Leader>p
+set pastetoggle=<F2>
 nnoremap ' `
 nnoremap ` '
 nnoremap Y y$
