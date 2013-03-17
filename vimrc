@@ -75,6 +75,8 @@ nnoremap / /\v
 vnoremap / /\v
 
 if has("cscope")
+  "TODO: turn this all into a plugin.
+
   set nocscopetag
   set cscopequickfix=s-,c-,d-,i-,t-,e-
   set nocscopeverbose
@@ -94,6 +96,25 @@ if has("cscope")
   nnoremap <Leader>fi :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>:botright cwindow<CR>
   "TODO: figure out how to get cstag output in quickfix or a popup menu.
   map <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
+
+  function! CscopeRebuild()
+    cscope kill .git/cscope.out
+    silent execute "!./.git/hooks/cscope"
+    if v:shell_error
+      redraw!
+      echohl ErrorMsg | echo "Unable to run cscope command." | echohl None
+    else
+      if filereadable(".git/cscope.out")
+        redraw!
+        cscope add .git/cscope.out
+      else
+        redraw!
+        echohl ErrorMsg | echo "Unable to read cscope database." | echohl None
+      endif
+    endif
+  endfunction
+
+  command! Cscope call CscopeRebuild()
 endif
 
 "Various broken (at least in KiTTY) attempts at home key stuff.
