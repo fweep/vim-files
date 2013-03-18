@@ -1,65 +1,163 @@
+" .vimrc
+
+" Be more Vimmy.
 set nocompatible
+
+" Encode all files in UTF-8 by default.
 set encoding=utf-8
 
-syntax on
+" Turn on syntax highlighting.
+syntax enable
+
+" Auto-load plugins and indent files based on filetype.
 filetype plugin indent on
 
+" Load all Pathogen-bundled plugins.
 call pathogen#infect()
 
-set t_Co=256
+" Force terminal type and 256 colors.
 set term=xterm-256color
+set t_Co=256
 
+" Use dark solarized color theme (slightly modified).
 set background=dark
 colorscheme solarized
 
 " Disable underline for folds.
 highlight Folded cterm=NONE
 
+" Honor modeline settings in files.
 set modeline
+
+" Keep files open even if there's no active window into them.
 set hidden
+
+" Save 1000 lines of history.
 set history=1000
+
+" Tabs are 2 spaces.
 set tabstop=2
+
+" Shift lines left/right by 2 spaces with <<, >>
 set shiftwidth=2
+
+" Replace tabs with the appropriate number of spaces in insert mode.
 set expandtab
+
+" Allow backspace over everything in insert mode.
 set backspace=indent,eol,start
+
+" No line wrapping.
 set nowrap
-set sidescrolloff=20
+
+" Scroll window sideways by 1 character at a time.
 set sidescroll=1
+
+" Keep cursor 20 characters from edge of window when scrolling horizontally.
+set sidescrolloff=20
+
+" Keep cursor 8 lines from top/bottom of window when scrolling vertically.
 set scrolloff=8
+
+" Don't create backup files.
 set nobackup
 set nowritebackup
+
+" Save more history for marks, commands, searches, etc. between invocations.
+set viminfo='100,/1000,:1000,<50,s100,h,c,n~/.vim/viminfo
+
+" Save undo history between Vim invocations.
 set undofile
+
+" Store various temp files in ~/.vim.
 set undodir=~/.vim/undo
 set backupdir=~/.vim/tmp,/var/tmp,/tmp
 set directory=~/.vim/tmp,/var/tmp,/tmp
-set tags+=.git/tags
+
+" Prepend .git/tags to tag file search path.
+set tags^=.git/tags
+
+" Set window title.
 set title
+
+" Always show statusline.
 set laststatus=2
+
+" Always show tabline.
 set showtabline=2
+
+" Reload externally-changed files when there are no changes in Vim.
 set autoread
+
+" Allow the cursor to move beyond EOL in visual mode block selections.
 set virtualedit=block
+
+" Show line numbers, width 4 in the column by default.
 set number
 set numberwidth=4
-set visualbell t_vb=
+
+" Disable error bells when error messages are printed.
 set noerrorbells
+
+" Disable visual flash on error bells.
+set visualbell t_vb=
+
+" Reduce the number of hit-enter prompts from status messages.
 set shortmess=aTI
+
+" Flash to matching paren/bracket/brace when matching pair is typed.
 set showmatch
+
+" Instantly flash back to current character are showing match.
 set matchtime=0
-set timeout timeoutlen=500 ttimeoutlen=50
+
+" For multi-character mappings and keycodes, wait 250ms and 100ms respectively
+" for the next key press before timing out and running the command.
+set timeout timeoutlen=250 ttimeoutlen=100
+
+" Highlight matching patterns when searching.
 set hlsearch
+
+" Move to matches as a search is performed.
 set incsearch
+
+" Case-insensitive searching when the pattern contains only lowercase.
 set ignorecase
+
+" Override ignorecase when the pattern contains uppercase characters.
 set smartcase
+
+" :substitute is global by default (append /g to patterns toggle off).
 set gdefault
+
+" Display tokens for leading/trailing whitespace, literals tabs and nbsp.
 set list listchars=tab:>·,trail:·,nbsp:·,extends:>
+
+" Allow <BS>, <Space>, <Left>, <Right> to line-wrap in normal mode.
+set whichwrap=b,s,<,>
+
+" Enable filename completion on <Tab> in command-line.
 set wildmenu
-set wildmode=list:longest
+
+" First <Tab> completes longest common match, second <Tab> opens wildmenu.
+set wildmode=list:longest,list:full
+
+" Ignore files matching these patterns when completing.
 set wildignore=.git,*.swp,*/tmp/*
+
+" Don't save open help windows in session.
 set sessionoptions-=help
+
+" Support Xterm2-style mouse (works in gnome-terminal, KiTTY, Iterm2)
 set ttymouse=xterm2
+
+" Enable mouse in all modes.
 set mouse=a
+
+" Expand the default preview window size (used by Fugitive for Gstatus, etc).
 set previewheight=20
 
+" <F2> toggles paste mode in normal/insert modes.
 set pastetoggle=<F2>
 
 let mapleader = ','
