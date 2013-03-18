@@ -111,9 +111,9 @@ set showmatch
 " Instantly flash back to current character are showing match.
 set matchtime=0
 
-" For multi-character mappings and keycodes, wait 250ms and 100ms respectively
+" For multi-character mappings and keycodes, wait 500ms and 50ms respectively
 " for the next key press before timing out and running the command.
-set timeout timeoutlen=250 ttimeoutlen=100
+set timeout timeoutlen=500 ttimeoutlen=50
 
 " Highlight matching patterns when searching.
 set hlsearch
