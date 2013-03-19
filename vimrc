@@ -26,6 +26,8 @@ colorscheme solarized
 " Disable underline for folds.
 highlight Folded cterm=NONE
 
+let mapleader = ','
+
 " Honor modeline settings in files.
 set modeline
 
@@ -158,9 +160,8 @@ set mouse=a
 set previewheight=20
 
 " <F2> toggles paste mode in normal/insert modes.
+nnoremap <silent> <F2> :set paste!<CR>
 set pastetoggle=<F2>
-
-let mapleader = ','
 
 nnoremap ' `
 nnoremap ` '
@@ -270,6 +271,19 @@ let g:Powerline_theme = 'fweep' "Disable encoding and newline indicators.
 let g:Powerline_colorscheme = 'skwp'
 
 autocmd QuickFixCmdPost *grep* cwindow
+
+function! LoadAndDisplayRSpecQuickfix()
+  let quickfix_filename = "tmp/quickfix.out"
+  if filereadable(quickfix_filename) && getfsize(quickfix_filename) != 0
+    silent cgetfile tmp/quickfix.out
+    botright cwindow
+  else
+    redraw!
+    echohl WarningMsg | echo "Quickfix file tmp/quickfix.out is missing or empty." | echohl None
+  endif
+endfunction
+
+noremap <Leader>q :call LoadAndDisplayRSpecQuickfix()<CR>
 
 autocmd FileType vim  call SetVimScriptFileTypeOptions()
 autocmd FileType ruby call SetRubyFileTypeOptions()
