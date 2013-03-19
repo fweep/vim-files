@@ -3,7 +3,6 @@ let g:Powerline#Themes#fweep#theme = Pl#Theme#Create(
       \ , 'paste_indicator'
       \ , 'mode_indicator'
       \ , 'fugitive:branch'
-      \ , 'hgrev:branch'
       \ , 'fileinfo'
       \ , 'syntastic:errors'
       \ , Pl#Segment#Truncate()
