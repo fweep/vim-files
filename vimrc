@@ -147,6 +147,12 @@ set wildmode=list:longest,list:full
 " Ignore files matching these patterns when completing.
 set wildignore=.git,*.swp,*/tmp/*
 
+" Ignore some sources for faster autocompletion of tags.
+" Current file, other open windows/buffers, included files, tags.
+set complete=.,w,b,i,t
+" Current file, tags.
+" set complete=.,t
+
 " Don't save open help windows in session.
 set sessionoptions-=help
 
