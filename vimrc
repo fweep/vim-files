@@ -283,8 +283,9 @@ autocmd QuickFixCmdPost *grep* cwindow
 function! LoadAndDisplayRSpecQuickfix()
   let quickfix_filename = ".git/quickfix.out"
   if filereadable(quickfix_filename) && getfsize(quickfix_filename) != 0
-    silent cgetfile .git/quickfix.out
+    silent cfile .git/quickfix.out
     botright cwindow
+    cc
   else
     redraw!
     echohl WarningMsg | echo "Quickfix file .git/quickfix.out is missing or empty." | echohl None
