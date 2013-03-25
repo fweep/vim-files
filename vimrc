@@ -15,10 +15,6 @@ filetype plugin indent on
 " Load all Pathogen-bundled plugins.
 call pathogen#infect()
 
-" Force terminal type and 256 colors.
-set term=xterm-256color
-set t_Co=256
-
 " Use dark solarized color theme (slightly modified).
 set background=dark
 colorscheme solarized
@@ -256,7 +252,7 @@ let g:session_autosave=1
 nnoremap <C-s><C-s> :SaveSession<CR>
 nnoremap <C-s><C-r> :OpenSession<CR>
 
-nnoremap <unique> <C-w>w <Plug>ZoomWin
+nnoremap <silent> <C-w>w :ZoomWin<CR>
 nnoremap <Leader>d :NERDTreeToggle<cr>
 nnoremap <F5> :GundoToggle<CR>
 
