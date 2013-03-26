@@ -108,3 +108,6 @@
 [submodule "bundle/vim-zsh-path-completion"]
 	path = bundle/vim-zsh-path-completion
 	url = git@github.com:fweep/vim-zsh-path-completion.git
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = git://github.com/SirVer/ultisnips.git
