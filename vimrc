@@ -15,10 +15,6 @@ filetype plugin indent on
 " Load all Pathogen-bundled plugins.
 call pathogen#infect()
 
-" Force terminal type and 256 colors.
-set term=xterm-256color
-set t_Co=256
-
 " Use dark solarized color theme (slightly modified).
 set background=dark
 colorscheme solarized
