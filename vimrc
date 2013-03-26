@@ -256,7 +256,7 @@ let g:session_autosave=1
 nnoremap <C-s><C-s> :SaveSession<CR>
 nnoremap <C-s><C-r> :OpenSession<CR>
 
-nnoremap <unique> <C-w>w <Plug>ZoomWin
+nnoremap <silent> <C-w>w :ZoomWin<CR>
 nnoremap <Leader>d :NERDTreeToggle<cr>
 nnoremap <F5> :GundoToggle<CR>
 
@@ -344,5 +344,4 @@ map <Leader>R <Plug>RubyFileRun
 let g:blockle_mapping = '<Leader>bl'
 
 if filereadable('.vimrc-project') | source .vimrc-project | endif
-
 if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
