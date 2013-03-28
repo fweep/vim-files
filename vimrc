@@ -33,14 +33,17 @@ set hidden
 " Save 1000 lines of history.
 set history=1000
 
+" Replace tabs with the appropriate number of spaces in insert mode.
+set expandtab
+
 " Tabs are 2 spaces.
 set tabstop=2
 
-" Shift lines left/right by 2 spaces with <<, >>
-set shiftwidth=2
+" Backspace deletes to previous tabstop.
+set softtabstop=2
 
-" Replace tabs with the appropriate number of spaces in insert mode.
-set expandtab
+" Shift lines left/right by 2 spaces with <<, >>, indent with ==
+set shiftwidth=2
 
 " Allow backspace over everything in insert mode.
 set backspace=indent,eol,start
