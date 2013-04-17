@@ -179,13 +179,28 @@ set tildeop
 nnoremap <silent> <F2> :set paste!<CR>
 set pastetoggle=<F2>
 
+" Make . on a visual selection sensible.
+vnoremap . :normal .<CR>
+
+" Swap behavior of ' and ` for easier typing.
 nnoremap ' `
 nnoremap ` '
+
+" Make Y behave like C and D.
 nnoremap Y y$
+
+" Toggle search highlighting off more easily.
 nnoremap <Leader><space> :nohlsearch<CR>
-nnoremap <C-k> :bprevious<CR>
-nnoremap <C-j> :bnext<CR>
+
+" Easier buffer cycling.
+" Deprecated in favor of vim-unimpaired.
+" nnoremap <C-k> :bprevious<CR>
+" nnoremap <C-j> :bnext<CR>
+
+" Shell-like buffer closing.
 nnoremap <C-d> :quit<CR>
+
+" Default to "very magic" mode for searching.
 nnoremap / /\v
 vnoremap / /\v
 
