@@ -163,20 +163,44 @@ set ttymouse=xterm2
 " Enable mouse in all modes.
 set mouse=a
 
+" Hide the mouse while typing (default; just being explicit here).
+set mousehide
+
+" Don't redraw while executing macros.
+set lazyredraw
+
 " Expand the default preview window size (used by Fugitive for Gstatus, etc).
 set previewheight=20
+
+" Make ~ for case-swapping require a motion by default.
+set tildeop
 
 " <F2> toggles paste mode in normal/insert modes.
 nnoremap <silent> <F2> :set paste!<CR>
 set pastetoggle=<F2>
 
+" Make . on a visual selection sensible.
+vnoremap . :normal .<CR>
+
+" Swap behavior of ' and ` for easier typing.
 nnoremap ' `
 nnoremap ` '
+
+" Make Y behave like C and D.
 nnoremap Y y$
+
+" Toggle search highlighting off more easily.
 nnoremap <Leader><space> :nohlsearch<CR>
-nnoremap <C-k> :bprevious<CR>
-nnoremap <C-j> :bnext<CR>
+
+" Easier buffer cycling.
+" Deprecated in favor of vim-unimpaired.
+" nnoremap <C-k> :bprevious<CR>
+" nnoremap <C-j> :bnext<CR>
+
+" Shell-like buffer closing.
 nnoremap <C-d> :quit<CR>
+
+" Default to "very magic" mode for searching.
 nnoremap / /\v
 vnoremap / /\v
 
@@ -223,7 +247,17 @@ if has("cscope")
   command! Cscope call CscopeRebuild()
 endif
 
-"Various broken (at least in KiTTY) attempts at home key stuff.
+nnoremap <silent> <Home> :call Home()<CR>
+inoremap <silent> <Home> <C-O>:call Home()<CR>
+
+function Home()
+    let curcol = wincol()
+    normal ^
+    let newcol = wincol()
+    if newcol == curcol
+        normal 0
+    endif
+endfunction
 
 " nnoremap [1~ <home>
 
@@ -235,15 +269,6 @@ endif
 
 " inoremap <silent> <home> <C-O>:call Home()<CR>
 " nnoremap <silent> <home> :call Home()<CR>
-
-" function Home()
-"     let curcol = wincol()
-"     normal ^
-"     let newcol = wincol()
-"     if newcol == curcol
-"         normal 0
-"     endif
-" endfunction
 
 cnoreabbrev <expr> help getcmdtype() == ':' && getcmdline() == 'help' ? 'vert bo h' : 'help'
 cnoreabbrev <expr> h getcmdtype() == ':' && getcmdline() == 'h' ? 'vert bo h' : 'h'

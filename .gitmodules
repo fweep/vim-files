@@ -111,9 +111,3 @@
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
-[submodule "bundle/vim-foundation-classes"]
-	path = bundle/vim-foundation-classes
-	url = git@github.com:fweep/vim-foundation-classes.git
-[submodule "bundle/vim-expand-region"]
-	path = bundle/vim-expand-region
-	url = git://github.com/terryma/vim-expand-region.git
