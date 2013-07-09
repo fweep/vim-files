@@ -318,10 +318,11 @@ endfunction
 
 noremap <Leader>q :call LoadAndDisplayRSpecQuickfix()<CR>
 
-autocmd FileType vim  call SetVimScriptFileTypeOptions()
-autocmd FileType ruby call SetRubyFileTypeOptions()
-autocmd FileType zsh  call SetZshFileTypeOptions()
-autocmd FileType make setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
+autocmd FileType vim    call SetVimScriptFileTypeOptions()
+autocmd FileType ruby   call SetRubyFileTypeOptions()
+autocmd FileType python call SetPythonFileTypeOptions()
+autocmd FileType zsh    call SetZshFileTypeOptions()
+autocmd FileType make   setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
 
 autocmd BufRead,BufNewFile *.zsh                            setlocal filetype=zsh
 autocmd BufRead,BufNewFile *.zsh-theme                      setlocal filetype=zsh
@@ -343,6 +344,13 @@ endfunction
 
 function! SetRubyFileTypeOptions()
   setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
+  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'ruby' | setlocal cursorline | endif
+  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'ruby' | setlocal nocursorline | endif
+endfunction
+
+function! SetPythonFileTypeOptions()
+  setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
+  setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'ruby' | setlocal cursorline | endif
   autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'ruby' | setlocal nocursorline | endif
 endfunction
