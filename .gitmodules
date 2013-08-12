@@ -120,3 +120,6 @@
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = git@github.com:davidhalter/jedi-vim.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = git@github.com:plasticboy/vim-markdown.git

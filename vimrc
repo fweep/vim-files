@@ -324,6 +324,7 @@ autocmd FileType python call SetPythonFileTypeOptions()
 autocmd FileType zsh    call SetZshFileTypeOptions()
 autocmd FileType make   setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
 autocmd FileType conf   setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
+autocmd FileType mkd    setlocal wrap textwidth=72 formatoptions=cat linebreak nofoldenable
 
 autocmd BufRead,BufNewFile *.jinja2                         setlocal filetype=jinja
 autocmd BufRead,BufNewFile *.zsh                            setlocal filetype=zsh
@@ -371,17 +372,22 @@ function! CurrentBufferIsEmpty()
   return line('$') == 1 && getline(1) == ''
 endfunction
 
+" vim-rubytest
 let g:rubytest_spec_drb = 1
 map <Leader>r <Plug>RubyTestRun
 map <Leader>R <Plug>RubyFileRun
 
+" vim-blockle
 let g:blockle_mapping = '<Leader>bl'
+
+" syntastic
 let g:syntastic_python_checkers = ["flake8"]
 let g:syntastic_python_flake8_args = "--max-line-length=119"
 
-" This is for vim-flake8 (separate from Syntastic).
+" vim-flake8 (separate from syntastic)
 let g:flake8_max_line_length=119
 
+" jedi-vim
 let g:jedi#goto_command = "<leader>jg"
 let g:jedi#get_definition_command = "<leader>jd"
 let g:jedi#rename_command = "<leader>jr"
