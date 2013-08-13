@@ -324,7 +324,7 @@ autocmd FileType python call SetPythonFileTypeOptions()
 autocmd FileType zsh    call SetZshFileTypeOptions()
 autocmd FileType make   setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
 autocmd FileType conf   setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
-autocmd FileType mkd    setlocal wrap textwidth=72 formatoptions=cat linebreak nofoldenable
+autocmd FileType mkd    setlocal wrap textwidth=72 linebreak nofoldenable
 
 autocmd BufRead,BufNewFile *.jinja2                         setlocal filetype=jinja
 autocmd BufRead,BufNewFile *.zsh                            setlocal filetype=zsh
