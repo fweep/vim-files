@@ -189,6 +189,9 @@ nnoremap ` '
 " Make Y behave like C and D.
 nnoremap Y y$
 
+" Make X like D into a black hole.
+nnoremap X "_D
+
 " Toggle search highlighting off more easily.
 nnoremap <Leader><space> :nohlsearch<CR>
 
@@ -388,10 +391,16 @@ let g:syntastic_python_flake8_args = "--max-line-length=119"
 let g:flake8_max_line_length=119
 
 " jedi-vim
-let g:jedi#goto_command = "<leader>jg"
-let g:jedi#get_definition_command = "<leader>jd"
-let g:jedi#rename_command = "<leader>jr"
-let g:jedi#related_names_command = "<leader>jn"
+let g:jedi#goto_command = "<Leader>jg"
+let g:jedi#get_definition_command = "<Leader>jd"
+let g:jedi#rename_command = "<Leader>jr"
+let g:jedi#related_names_command = "<Leader>jn"
+
+" python-mode
+let g:pymode_lint = 0  " prefer syntastic
+let g:pymode_rope = 0  " conflicts with jedi-vim key bindings (for now)
+let g:pymode_run_key = "<Leader>pr"
+let g:pymode_breakpoint_key = "<Leader>pb"
 
 if filereadable('.vimrc-project') | source .vimrc-project | endif
 if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
