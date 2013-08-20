@@ -10,10 +10,6 @@
 	path = bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
 	ignore = untracked
-[submodule "bundle/supertab"]
-	path = bundle/supertab
-	url = https://github.com/ervandew/supertab.git
-	ignore = untracked
 [submodule "bundle/vim-abolish"]
 	path = bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish.git
@@ -117,12 +113,12 @@
 [submodule "bundle/vim-flake8"]
 	path = bundle/vim-flake8
 	url = git@github.com:nvie/vim-flake8.git
-[submodule "bundle/jedi-vim"]
-	path = bundle/jedi-vim
-	url = git@github.com:davidhalter/jedi-vim.git
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
 	url = git@github.com:plasticboy/vim-markdown.git
 [submodule "bundle/python-mode"]
 	path = bundle/python-mode
 	url = git@github.com:klen/python-mode.git
+[submodule "bundle/YouCompleteMe"]
+	path = bundle/YouCompleteMe
+	url = git@github.com:Valloric/YouCompleteMe.git
