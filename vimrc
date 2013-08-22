@@ -355,7 +355,7 @@ function! SetRubyFileTypeOptions()
 endfunction
 
 function! SetPythonFileTypeOptions()
-  setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
+  setlocal foldmethod=indent foldlevel=20 formatoptions-=o
   setlocal tabstop=4 softtabstop=4 shiftwidth=4
   setlocal completeopt-=preview
   autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'ruby' | setlocal cursorline | endif
