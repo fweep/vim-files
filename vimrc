@@ -262,19 +262,10 @@ function Home()
     endif
 endfunction
 
-" nnoremap [1~ <home>
-
-" inoremap <khome> <home> " Why are these here?
-" nnoremap <khome> <home>
-
-" noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
-" imap <silent> <Home> <C-O><Home>
-
-" inoremap <silent> <home> <C-O>:call Home()<CR>
-" nnoremap <silent> <home> :call Home()<CR>
-
 cnoreabbrev <expr> help getcmdtype() == ':' && getcmdline() == 'help' ? 'vert bo h' : 'help'
 cnoreabbrev <expr> h getcmdtype() == ':' && getcmdline() == 'h' ? 'vert bo h' : 'h'
+
+cnoremap <C-a> <Home>
 
 runtime macros/matchit.vim
 
@@ -321,14 +312,15 @@ endfunction
 
 noremap <Leader>q :call LoadAndDisplayRSpecQuickfix()<CR>
 
-autocmd FileType vim    call SetVimScriptFileTypeOptions()
-autocmd FileType ruby   call SetRubyFileTypeOptions()
-autocmd FileType python call SetPythonFileTypeOptions()
-autocmd FileType zsh    call SetZshFileTypeOptions()
-autocmd FileType jinja  call SetJinjaFileTypeOptions()
-autocmd FileType make   setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
-autocmd FileType conf   setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
-autocmd FileType mkd    setlocal wrap textwidth=72 linebreak nofoldenable
+autocmd FileType vim        call SetVimScriptFileTypeOptions()
+autocmd FileType ruby       call SetRubyFileTypeOptions()
+autocmd FileType python     call SetPythonFileTypeOptions()
+autocmd FileType zsh        call SetZshFileTypeOptions()
+autocmd FileType jinja      call SetJinjaFileTypeOptions()
+autocmd FileType javascript call SetJavaScriptFileTypeOptions()
+autocmd FileType make       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
+autocmd FileType conf       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
+autocmd FileType mkd        setlocal wrap textwidth=72 linebreak nofoldenable
 
 autocmd BufRead,BufNewFile *.jinja2                         setlocal filetype=jinja
 autocmd BufRead,BufNewFile *.zsh                            setlocal filetype=zsh
@@ -342,6 +334,13 @@ augroup local_buffergator
   autocmd BufEnter \[\[buffergator-buffers\]\] unmap ds
   autocmd BufLeave \[\[buffergator-buffers\]\] nmap ds <Plug>Dsurround
 augroup END
+
+function! SetJavaScriptFileTypeOptions()
+  setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
+  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'javascript' | setlocal cursorline | endif
+  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'javascript' | setlocal nocursorline | endif
+endfunction
 
 function! SetZshFileTypeOptions()
   setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
@@ -365,8 +364,8 @@ function! SetPythonFileTypeOptions()
   setlocal foldmethod=indent foldlevel=20 formatoptions-=o
   setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=119
   setlocal completeopt-=preview
-  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'ruby' | setlocal cursorline | endif
-  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'ruby' | setlocal nocursorline | endif
+  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'python' | setlocal cursorline | endif
+  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'python' | setlocal nocursorline | endif
 endfunction
 
 function! SetVimScriptFileTypeOptions()
