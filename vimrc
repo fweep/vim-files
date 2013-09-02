@@ -325,6 +325,7 @@ autocmd FileType vim    call SetVimScriptFileTypeOptions()
 autocmd FileType ruby   call SetRubyFileTypeOptions()
 autocmd FileType python call SetPythonFileTypeOptions()
 autocmd FileType zsh    call SetZshFileTypeOptions()
+autocmd FileType jinja  call SetJinjaFileTypeOptions()
 autocmd FileType make   setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
 autocmd FileType conf   setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
 autocmd FileType mkd    setlocal wrap textwidth=72 linebreak nofoldenable
@@ -346,6 +347,12 @@ function! SetZshFileTypeOptions()
   setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
   autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'zsh' | setlocal cursorline | endif
   autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'zsh' | setlocal nocursorline | endif
+endfunction
+
+function! SetJinjaFileTypeOptions()
+  setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
+  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'jinja' | setlocal cursorline | endif
+  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'jinja' | setlocal nocursorline | endif
 endfunction
 
 function! SetRubyFileTypeOptions()
