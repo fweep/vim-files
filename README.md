@@ -29,9 +29,7 @@ Includes the following plugins:
   Fuzzy file/buffer/tag finder.
 
 * [sjl/gundo](url = http://github.com/sjl/gundo.vim.git)
-  Visualize undo tree. It's a big unintuitive, so I never use it, thus
-the key bindings may conflict with or be masked by other plugins. It
-seems like a nice plugin, though.
+  Visualize undo tree.
 
 * [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree.git)
   Directory navigation & bookmarks.

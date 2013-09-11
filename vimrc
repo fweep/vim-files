@@ -276,7 +276,6 @@ nnoremap <C-s><C-r> :OpenSession<CR>
 
 nnoremap <silent> <C-w>w :ZoomWin<CR>
 nnoremap <Leader>d :NERDTreeToggle<cr>
-nnoremap <F5> :GundoToggle<CR>
 
 let g:tagbar_left = 1
 let g:tagbar_autoclose = 1
@@ -408,6 +407,12 @@ let g:pymode_lint = 0  " prefer syntastic
 let g:pymode_rope = 0  " conflicts with jedi-vim key bindings (for now)
 let g:pymode_run_key = "<Leader>pr"
 let g:pymode_breakpoint_key = "<Leader>pb"
+
+" gundo
+
+nnoremap <F5> :GundoToggle<CR>
+let g:gundo_with = 60
+let g:gundo_preview_height = 24
 
 if filereadable('.vimrc-project') | source .vimrc-project | endif
 if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
