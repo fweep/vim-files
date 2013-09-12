@@ -421,8 +421,8 @@ let g:gundo_with = 60
 let g:gundo_preview_height = 24
 
 " FIXME: pending better OSX clipboard integration
-vnoremap <C-x> :!pbcopy<CR>
-vnoremap <C-c> :w !pbcopy<CR><CR>
+" vnoremap <C-x> :!pbcopy<CR>
+" vnoremap <C-c> :w !pbcopy<CR><CR>
 
 if filereadable('.vimrc-project') | source .vimrc-project | endif
 if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
