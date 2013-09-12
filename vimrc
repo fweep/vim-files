@@ -13,6 +13,8 @@ syntax enable
 filetype plugin indent on
 
 " Load all Pathogen-bundled plugins.
+" First change UltiSnipsExpandTrigger due to problems with YouCompleteMe.
+let g:UltiSnipsExpandTrigger = "<C-j>"
 call pathogen#infect()
 
 " Use dark solarized color theme (slightly modified).
@@ -325,6 +327,7 @@ autocmd BufRead,BufNewFile *.jinja2                         setlocal filetype=ji
 autocmd BufRead,BufNewFile *.zsh                            setlocal filetype=zsh
 autocmd BufRead,BufNewFile *.zsh-theme                      setlocal filetype=zsh
 autocmd BufRead,BufNewFile Guardfile,.Guardfileset,.guardrc setlocal filetype=ruby
+autocmd BufRead,BufNewFile .tmux-osx.conf                   setlocal filetype=tmux
 
 autocmd BufRead,BufNewFile README.md   setlocal wrap textwidth=72 formatoptions-=lc formatoptions+=t
 
@@ -381,6 +384,9 @@ function! CurrentBufferIsEmpty()
   return line('$') == 1 && getline(1) == ''
 endfunction
 
+" Populate quickfix window with FIXME/TODO.
+command! Fixme Ack 'fixme|todo'
+
 " vim-rubytest
 let g:rubytest_spec_drb = 1
 map <Leader>r <Plug>RubyTestRun
@@ -413,6 +419,10 @@ let g:pymode_breakpoint_key = "<Leader>pb"
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_with = 60
 let g:gundo_preview_height = 24
+
+" FIXME: pending better OSX clipboard integration
+vnoremap <C-x> :!pbcopy<CR>
+vnoremap <C-c> :w !pbcopy<CR><CR>
 
 if filereadable('.vimrc-project') | source .vimrc-project | endif
 if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
