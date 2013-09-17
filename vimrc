@@ -319,8 +319,8 @@ autocmd FileType python     call SetPythonFileTypeOptions()
 autocmd FileType zsh        call SetZshFileTypeOptions()
 autocmd FileType jinja      call SetJinjaFileTypeOptions()
 autocmd FileType javascript call SetJavaScriptFileTypeOptions()
-autocmd FileType make       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
-autocmd FileType conf       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \ 
+autocmd FileType make       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \  # trailing whitespace
+autocmd FileType conf       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \  # trailing whitespace
 autocmd FileType mkd        setlocal wrap textwidth=72 linebreak nofoldenable
 
 autocmd BufRead,BufNewFile *.jinja2                         setlocal filetype=jinja
@@ -383,6 +383,23 @@ command! Vimrc  Vvimrc
 function! CurrentBufferIsEmpty()
   return line('$') == 1 && getline(1) == ''
 endfunction
+
+function DeleteHiddenBuffers()
+    let tpbl=[]
+    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+        silent execute 'bwipeout' buf
+    endfor
+endfunction
+
+function! DeleteTrailingWhitespace()
+    let line = line(".")
+    let col = col(".")
+    %s/\s\+$//e
+    call cursor(line, col)
+endfunction
+
+nnoremap <silent> <Leader>w :call DeleteTrailingWhitespace()<CR>
 
 " Populate quickfix window with FIXME/TODO.
 command! Fixme Ack 'fixme|todo'
