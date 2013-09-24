@@ -399,6 +399,16 @@ function! DeleteTrailingWhitespace()
     call cursor(line, col)
 endfunction
 
+function! VsplitAlternatePyramidFile()
+  let current_path = bufname("%")
+  let current_directory = fnamemodify(current_path, ":h:.")
+  let current_file = fnamemodify(current_path, ":t")
+  let test_path = "tests/" . current_directory . "/" . "test_" . current_file
+  exe "vsplit " . test_path
+endfunction
+
+command! AV call VsplitAlternatePyramidFile()
+
 nnoremap <silent> <Leader>w :call DeleteTrailingWhitespace()<CR>
 
 " Populate quickfix window with FIXME/TODO.
