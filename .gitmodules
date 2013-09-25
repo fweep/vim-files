@@ -58,10 +58,6 @@
 	path = bundle/NrrwRgn
 	url = https://github.com/chrisbra/NrrwRgn.git
 	ignore = untracked
-[submodule "bundle/zencoding-vim"]
-	path = bundle/zencoding-vim
-	url = https://github.com/mattn/zencoding-vim.git
-	ignore = untracked
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
@@ -125,3 +121,6 @@
 [submodule "bundle/vim-tbone"]
 	path = bundle/vim-tbone
 	url = https://github.com/tpope/vim-tbone.git
+[submodule "bundle/vim-tabber"]
+	path = bundle/vim-tabber
+	url = https://github.com/fweep/vim-tabber.git
