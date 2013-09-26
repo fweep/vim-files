@@ -1,8 +1,9 @@
-/.netrwhist
-/tmp/
-/sessions/
-/bundle/vim-foundation-classes/
-/undo/
-/viminfo
-/work/
-/bundle/vim-foundation-classes
+.netrwhist
+tmp/
+sessions/
+bundle/vim-foundation-classes/
+undo/*
+!undo/.keep
+viminfo
+work/
+bundle/vim-foundation-classes
