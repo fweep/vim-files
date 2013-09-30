@@ -13,6 +13,7 @@ syntax enable
 filetype plugin indent on
 
 " Load all Pathogen-bundled plugins.
+" Plugins are configured in ~/.vim/after/plugin/*.vim.
 " First change UltiSnipsExpandTrigger due to problems with YouCompleteMe.
 let g:UltiSnipsExpandTrigger = "<C-j>"
 call pathogen#infect()
@@ -79,7 +80,7 @@ set directory=~/.vim/tmp,/var/tmp,/tmp
 
 " Prepend .git/tags to tag file search path.
 " FIXME: consider removing most tag paths for speed.  Keep .git/tags, ./tags, ./tmp/tags,
-" anything Pathogen/Bundler asdfasdf plugins generate.
+" anything Pathogen/Bundler plugins generate.
 set tags^=.git/tags
 
 " Set window title.
@@ -203,7 +204,7 @@ nnoremap <Leader><space> :nohlsearch<CR>
 " nnoremap <C-j> :bnext<CR>
 
 " Shell-like buffer closing.
-nnoremap <C-d> :quit<CR>
+nnoremap <C-d> :BW<CR>
 
 " Default to "very magic" mode for searching.
 nnoremap / /\v
@@ -271,6 +272,7 @@ cnoremap <C-a> <Home>
 
 runtime macros/matchit.vim
 
+" FIXME: not sure these work anymore
 let g:session_autoload=0
 let g:session_autosave=1
 nnoremap <C-s><C-s> :SaveSession<CR>
@@ -278,24 +280,6 @@ nnoremap <C-s><C-r> :OpenSession<CR>
 
 nnoremap <silent> <C-w>w :ZoomWin<CR>
 nnoremap <Leader>d :NERDTreeToggle<cr>
-
-let g:tagbar_left = 1
-let g:tagbar_autoclose = 1
-let g:tagbar_autofocus = 1
-let g:tagbar_compact = 1
-let g:tagbar_autoshowtag = 1
-
-nnoremap <F6> :TagbarToggle<CR>
-
-let g:buffergator_suppress_keymaps=1
-nnoremap <Leader>g :BuffergatorToggle<CR>
-nnoremap <Leader>G :BuffergatorTabsToggle<CR>
-
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-
-let g:Powerline_symbols='fancy'
-let g:Powerline_theme = 'fweep' "Disable encoding and newline indicators.
-let g:Powerline_colorscheme = 'skwp'
 
 autocmd QuickFixCmdPost *grep* cwindow
 
@@ -330,12 +314,6 @@ autocmd BufRead,BufNewFile Guardfile,.Guardfileset,.guardrc setlocal filetype=ru
 autocmd BufRead,BufNewFile .tmux-osx.conf                   setlocal filetype=tmux
 
 autocmd BufRead,BufNewFile README.md   setlocal wrap textwidth=72 formatoptions-=lc formatoptions+=t
-
-augroup local_buffergator
-  autocmd!
-  autocmd BufEnter \[\[buffergator-buffers\]\] unmap ds
-  autocmd BufLeave \[\[buffergator-buffers\]\] nmap ds <Plug>Dsurround
-augroup END
 
 function! SetJavaScriptFileTypeOptions()
   setlocal tabstop=4 shiftwidth=4 softtabstop=4
@@ -411,45 +389,28 @@ command! AV call VsplitAlternatePyramidFile()
 
 nnoremap <silent> <Leader>w :call DeleteTrailingWhitespace()<CR>
 
+function! DeleteHiddenBuffers()
+    " http://stackoverflow.com/a/8459043/719547
+    let tpbl=[]
+    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+        silent execute 'bwipeout' buf
+    endfor
+endfunction
+
 " Populate quickfix window with FIXME/TODO.
 command! Fixme Ack 'fixme|todo'
 
-" vim-rubytest
-let g:rubytest_spec_drb = 1
-map <Leader>r <Plug>RubyTestRun
-map <Leader>R <Plug>RubyFileRun
-
-" vim-blockle
-let g:blockle_mapping = '<Leader>bl'
-
-" syntastic
-let g:syntastic_python_checkers = ["flake8"]
-let g:syntastic_python_flake8_args = "--max-line-length=119"
-
 " vim-flake8 (separate from syntastic)
+" FIXME: figure out how to move this to an after file
 let g:flake8_max_line_length=119
 
-" jedi-vim
-let g:jedi#goto_command = "<Leader>jg"
-let g:jedi#get_definition_command = "<Leader>jd"
-let g:jedi#rename_command = "<Leader>jr"
-let g:jedi#related_names_command = "<Leader>jn"
-
-" python-mode
-let g:pymode_lint = 0  " prefer syntastic
-let g:pymode_rope = 0  " conflicts with jedi-vim key bindings (for now)
-let g:pymode_run_key = "<Leader>pr"
-let g:pymode_breakpoint_key = "<Leader>pb"
-
-" gundo
-
-nnoremap <F5> :GundoToggle<CR>
-let g:gundo_with = 60
-let g:gundo_preview_height = 24
-
-" FIXME: pending better OSX clipboard integration
-" vnoremap <C-x> :!pbcopy<CR>
-" vnoremap <C-c> :w !pbcopy<CR><CR>
+" Powerline
+" FIXME: figure out why this doesn't work in after/plugin/Powerline.vim.
+let g:Powerline_symbols='fancy'
+let g:Powerline_theme = 'fweep' " Disable encoding and newline indicators.
+let g:Powerline_colorscheme = 'skwp'
 
 if filereadable('.vimrc-project') | source .vimrc-project | endif
+
 if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
