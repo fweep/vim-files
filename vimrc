@@ -303,8 +303,8 @@ autocmd FileType python     call SetPythonFileTypeOptions()
 autocmd FileType zsh        call SetZshFileTypeOptions()
 autocmd FileType jinja      call SetJinjaFileTypeOptions()
 autocmd FileType javascript call SetJavaScriptFileTypeOptions()
-autocmd FileType make       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \  # trailing whitespace
-autocmd FileType conf       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \  # trailing whitespace
+autocmd FileType make       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \  " trailing whitespace
+autocmd FileType conf       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \  " trailing whitespace
 autocmd FileType mkd        setlocal wrap textwidth=72 linebreak nofoldenable
 
 autocmd BufRead,BufNewFile *.jinja2                         setlocal filetype=jinja
@@ -386,6 +386,8 @@ function! VsplitAlternatePyramidFile()
 endfunction
 
 command! AV call VsplitAlternatePyramidFile()
+
+nnoremap <Leader>v :AV<CR>
 
 nnoremap <silent> <Leader>w :call DeleteTrailingWhitespace()<CR>
 
