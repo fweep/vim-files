@@ -160,8 +160,13 @@ set complete=.,w,b,i,t
 " Don't save open help windows in session.
 set sessionoptions-=help
 
-" Support Xterm2-style mouse (works in gnome-terminal, KiTTY, Iterm2)
-set ttymouse=xterm2
+" Support SGR mouse if available, fall back to xterm2 mouse.
+if has("mouse_sgr")
+  " Allows mouse clicking beyond terminal column 222.
+  set ttymouse=sgr
+else
+  set ttymouse=xterm2
+endif
 
 " Enable mouse in all modes.
 set mouse=a
@@ -277,9 +282,6 @@ let g:session_autoload=0
 let g:session_autosave=1
 nnoremap <C-s><C-s> :SaveSession<CR>
 nnoremap <C-s><C-r> :OpenSession<CR>
-
-nnoremap <silent> <C-w>w :ZoomWin<CR>
-nnoremap <Leader>d :NERDTreeToggle<cr>
 
 autocmd QuickFixCmdPost *grep* cwindow
 
