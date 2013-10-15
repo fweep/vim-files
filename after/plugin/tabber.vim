@@ -1,3 +1,8 @@
+if has("gui")
+  " Use a terminal-style tabline.
+  set guioptions-=e
+endif
+
 set tabline=%!tabber#TabLine()
 
 nnoremap <C-t>              :999TabberNew<CR>
