@@ -6,7 +6,7 @@ endif
 set tabline=%!tabber#TabLine()
 
 nnoremap <C-t>              :999TabberNew<CR>
-nnoremap <leader><leader>   :TabberSelectLastActive<CR>
+nnoremap <leader>.          :TabberSelectLastActive<CR>
 nnoremap <leader>tc         :tabclose<CR>
 nnoremap <leader>tl         :TabberShiftLeft<CR>
 nnoremap <leader>tr         :TabberShiftRight<CR>
@@ -22,4 +22,4 @@ nnoremap <silent> <Leader>8 :tabnext 8<CR>
 nnoremap <silent> <Leader>9 :tabnext 9<CR>
 
 let g:tabber_wrap_when_shifting = 1
-let g:tabber_filename_style = 'relative'
+let g:tabber_filename_style = 'pathshorten'
