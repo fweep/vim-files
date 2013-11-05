@@ -294,17 +294,6 @@ endfunction
 
 noremap <Leader>q :call LoadAndDisplayRSpecQuickfix()<CR>
 
-" FIXME: move these to .vim/ftplugin/etc
-autocmd FileType vim        call SetVimScriptFileTypeOptions()
-autocmd FileType ruby       call SetRubyFileTypeOptions()
-autocmd FileType python     call SetPythonFileTypeOptions()
-autocmd FileType zsh        call SetZshFileTypeOptions()
-autocmd FileType jinja      call SetJinjaFileTypeOptions()
-autocmd FileType javascript call SetJavaScriptFileTypeOptions()
-autocmd FileType make       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \  " trailing whitespace
-autocmd FileType conf       setlocal noexpandtab tabstop=8 shiftwidth=8 listchars-=tab:>· listchars+=tab:\ \  " trailing whitespace
-autocmd FileType mkd        setlocal wrap textwidth=72 linebreak nofoldenable
-
 autocmd BufRead,BufNewFile *.jinja2                         setlocal filetype=jinja
 autocmd BufRead,BufNewFile *.zsh                            setlocal filetype=zsh
 autocmd BufRead,BufNewFile *.zsh-theme                      setlocal filetype=zsh
@@ -312,46 +301,6 @@ autocmd BufRead,BufNewFile Guardfile,.Guardfileset,.guardrc setlocal filetype=ru
 autocmd BufRead,BufNewFile .tmux-osx.conf                   setlocal filetype=tmux
 
 autocmd BufRead,BufNewFile README.md   setlocal wrap textwidth=72 formatoptions-=lc formatoptions+=t
-
-function! SetJavaScriptFileTypeOptions()
-  setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
-  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'javascript' | setlocal cursorline | endif
-  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'javascript' | setlocal nocursorline | endif
-endfunction
-
-function! SetZshFileTypeOptions()
-  setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
-  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'zsh' | setlocal cursorline | endif
-  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'zsh' | setlocal nocursorline | endif
-endfunction
-
-function! SetJinjaFileTypeOptions()
-  setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
-  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'jinja' | setlocal cursorline | endif
-  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'jinja' | setlocal nocursorline | endif
-endfunction
-
-function! SetRubyFileTypeOptions()
-  setlocal foldmethod=syntax foldlevel=20 formatoptions-=o
-  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'ruby' | setlocal cursorline | endif
-  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'ruby' | setlocal nocursorline | endif
-endfunction
-
-function! SetPythonFileTypeOptions()
-  setlocal foldmethod=indent foldlevel=20 formatoptions-=o
-  setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=119
-  setlocal completeopt-=preview
-  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'python' | setlocal cursorline | endif
-  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'python' | setlocal nocursorline | endif
-endfunction
-
-function! SetVimScriptFileTypeOptions()
-  setlocal foldmethod=marker foldlevel=0 formatoptions-=o
-  setlocal textwidth=119
-  autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'vim' | setlocal cursorline | endif
-  autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'vim' | setlocal nocursorline | endif
-endfunction
 
 command! Vvimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | botright vsplit ~/.vimrc | endif
 command! Svimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | split ~/.vimrc | endif
@@ -401,10 +350,6 @@ endfunction
 
 " Populate quickfix window with FIXME/TODO.
 command! Fixme Ack 'fixme|todo'
-
-" vim-flake8 (separate from syntastic)
-" FIXME: figure out how to move this to an after file
-let g:flake8_max_line_length=119
 
 " Powerline
 " FIXME: figure out why this doesn't work in after/plugin/Powerline.vim.
