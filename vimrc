@@ -25,6 +25,7 @@ colorscheme solarized
 " Disable underline for folds.
 highlight Folded cterm=NONE
 
+" Change leader from default \.
 let mapleader = ','
 
 " Honor modeline settings in files.
@@ -203,14 +204,6 @@ nnoremap X "_D
 " Toggle search highlighting off more easily.
 nnoremap <Leader><space> :nohlsearch<CR>
 
-" Easier buffer cycling.
-" Deprecated in favor of vim-unimpaired.
-" nnoremap <C-k> :bprevious<CR>
-" nnoremap <C-j> :bnext<CR>
-
-" Shell-like buffer closing.
-nnoremap <C-d> :BW<CR>
-
 " Default to "very magic" mode for searching.
 nnoremap / /\v
 vnoremap / /\v
@@ -258,6 +251,7 @@ if has("cscope")
   command! Cscope call CscopeRebuild()
 endif
 
+" Make <Home> alternately jump between column 0 and the first non-whitespace column.
 nnoremap <silent> <Home> :call Home()<CR>
 inoremap <silent> <Home> <C-O>:call Home()<CR>
 
@@ -270,6 +264,7 @@ function Home()
     endif
 endfunction
 
+" Open help in a vertical split.
 cnoreabbrev <expr> help getcmdtype() == ':' && getcmdline() == 'help' ? 'vert bo h' : 'help'
 cnoreabbrev <expr> h getcmdtype() == ':' && getcmdline() == 'h' ? 'vert bo h' : 'h'
 
@@ -299,6 +294,7 @@ endfunction
 
 noremap <Leader>q :call LoadAndDisplayRSpecQuickfix()<CR>
 
+" FIXME: move these to .vim/ftplugin/etc
 autocmd FileType vim        call SetVimScriptFileTypeOptions()
 autocmd FileType ruby       call SetRubyFileTypeOptions()
 autocmd FileType python     call SetPythonFileTypeOptions()
@@ -352,6 +348,7 @@ endfunction
 
 function! SetVimScriptFileTypeOptions()
   setlocal foldmethod=marker foldlevel=0 formatoptions-=o
+  setlocal textwidth=119
   autocmd BufWinEnter,BufEnter,WinEnter       * if &ft ==# 'vim' | setlocal cursorline | endif
   autocmd BufWinLeave,BufLeave,WinLeave       * if &ft ==# 'vim' | setlocal nocursorline | endif
 endfunction
