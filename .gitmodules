@@ -99,22 +99,22 @@
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
 [submodule "bundle/vim-zsh-path-completion"]
 	path = bundle/vim-zsh-path-completion
-	url = git@github.com:fweep/vim-zsh-path-completion.git
+	url = https://github.com/fweep/vim-zsh-path-completion.git
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
 [submodule "bundle/Vim-Jinja2-Syntax"]
 	path = bundle/Vim-Jinja2-Syntax
-	url = git@github.com:Glench/Vim-Jinja2-Syntax.git
+	url = https://github.com/Glench/Vim-Jinja2-Syntax.git
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
-	url = git@github.com:plasticboy/vim-markdown.git
+	url = https://github.com/plasticboy/vim-markdown.git
 [submodule "bundle/python-mode"]
 	path = bundle/python-mode
-	url = git@github.com:klen/python-mode.git
+	url = https://github.com/klen/python-mode.git
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
-	url = git@github.com:Valloric/YouCompleteMe.git
+	url = https://github.com/Valloric/YouCompleteMe.git
 [submodule "bundle/vim-tbone"]
 	path = bundle/vim-tbone
 	url = https://github.com/tpope/vim-tbone.git
