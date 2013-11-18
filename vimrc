@@ -184,6 +184,9 @@ set previewheight=20
 " Make ~ for case-swapping require a motion by default.
 set tildeop
 
+" Disable <F1> help because I always fat-finger <Esc> on tiny keyboards.
+nnoremap <F1> <Nop>
+
 " <F2> toggles paste mode in normal/insert modes.
 nnoremap <silent> <F2> :set paste!<CR>
 set pastetoggle=<F2>
