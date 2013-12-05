@@ -22,4 +22,4 @@ nnoremap <silent> <Leader>8 :tabnext 8<CR>
 nnoremap <silent> <Leader>9 :tabnext 9<CR>
 
 let g:tabber_wrap_when_shifting = 1
-let g:tabber_filename_style = 'pathshorten'
+let g:tabber_filename_style = 'filename'
