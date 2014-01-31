@@ -127,3 +127,6 @@
 [submodule "bundle/vim-qargs"]
 	path = bundle/vim-qargs
 	url = https://github.com/henrik/vim-qargs.git
+[submodule "bundle/sideways.vim"]
+	path = bundle/sideways.vim
+	url = https://github.com/AndrewRadev/sideways.vim.git
