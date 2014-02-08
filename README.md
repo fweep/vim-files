@@ -43,6 +43,13 @@ because other plugins provide better implementations (syntastic and
 YouCompleteMe in particular), and some features are disabled because
 the key bindings conflicted (Rope), but it seems worth exploring.
 
+* [nelstrom/vim-qargs](https://github.com/nelstrom/vim-qargs)
+  Like `argdo` and friends, for every file in the QuickFix list.
+
+* [AndrewRadev/sideways.vim](https://github.com/AndrewRadev/sideways.vim)
+  Move function parameters and other delimited list elements
+left/right. Supports multiple languages, tabular data, etc.
+
 * [scrooloose/syntastic](https://github.com/scrooloose/syntastic.git)
   Display syntax errors.
 
