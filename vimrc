@@ -297,11 +297,7 @@ endfunction
 
 noremap <Leader>q :call LoadAndDisplayRSpecQuickfix()<CR>
 
-autocmd BufRead,BufNewFile *.jinja2                         setlocal filetype=jinja
-autocmd BufRead,BufNewFile *.zsh                            setlocal filetype=zsh
-autocmd BufRead,BufNewFile *.zsh-theme                      setlocal filetype=zsh
-autocmd BufRead,BufNewFile Guardfile,.Guardfileset,.guardrc setlocal filetype=ruby
-autocmd BufRead,BufNewFile .tmux-osx.conf                   setlocal filetype=tmux
+autocmd BufRead,BufNewFile .tmux-osx.conf                   setfiletype tmux
 
 autocmd BufRead,BufNewFile README.md   setlocal wrap textwidth=72 formatoptions-=lc formatoptions+=t
 

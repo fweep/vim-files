@@ -130,3 +130,6 @@
 [submodule "bundle/sideways.vim"]
 	path = bundle/sideways.vim
 	url = https://github.com/AndrewRadev/sideways.vim.git
+[submodule "bundle/vim-jdaddy"]
+	path = bundle/vim-jdaddy
+	url = https://github.com/tpope/vim-jdaddy.git
