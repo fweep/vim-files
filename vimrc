@@ -284,7 +284,7 @@ nnoremap <C-s><C-r> :OpenSession<CR>
 autocmd QuickFixCmdPost *grep* cwindow
 
 function! LoadAndDisplayRSpecQuickfix()
-  let quickfix_filename = ".git/quickfix.out"
+  let quickfix_filename = "../../.git/quickfix.out"
   if filereadable(quickfix_filename) && getfsize(quickfix_filename) != 0
     silent execute ":cfile " . quickfix_filename
     botright cwindow
