@@ -100,9 +100,6 @@
 [submodule "bundle/vim-zsh-path-completion"]
 	path = bundle/vim-zsh-path-completion
 	url = https://github.com/fweep/vim-zsh-path-completion.git
-[submodule "bundle/ultisnips"]
-	path = bundle/ultisnips
-	url = https://github.com/SirVer/ultisnips.git
 [submodule "bundle/Vim-Jinja2-Syntax"]
 	path = bundle/Vim-Jinja2-Syntax
 	url = https://github.com/Glench/Vim-Jinja2-Syntax.git
