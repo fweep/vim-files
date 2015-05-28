@@ -191,6 +191,12 @@ nnoremap <F1> <Nop>
 nnoremap <silent> <F2> :set paste!<CR>
 set pastetoggle=<F2>
 
+" Disabled paste mode when leaving insert mode.
+autocmd InsertLeave * set nopaste
+
+" Visually select entire buffer.
+nnoremap <Leader>a ggVG
+
 " Make . on a visual selection sensible.
 vnoremap . :normal .<CR>
 
