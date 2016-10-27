@@ -6,17 +6,45 @@ set nocompatible
 " Encode all files in UTF-8 by default.
 set encoding=utf-8
 
+filetype off
+
+" Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'scrooloose/nerdtree'
+Plugin 'pangloss/vim-javascript'
+Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ConradIrwin/vim-bracketed-paste'
+Plugin 'mxw/vim-jsx'
+Plugin 'vim-scripts/bufkill.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-abolish'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-endwise'
+Plugin 'kchmck/vim-coffee-script'
+
+" Needs to be after Powerline to override its tabline wrongness.
+Plugin 'fweep/vim-tabber'
+
+call vundle#end()
+
 " Turn on syntax highlighting.
 syntax enable
 
 " Auto-load plugins and indent files based on filetype.
 filetype plugin indent on
-
-" Load all Pathogen-bundled plugins.
-" Plugins are configured in ~/.vim/after/plugin/*.vim.
-" First change UltiSnipsExpandTrigger due to problems with YouCompleteMe.
-let g:UltiSnipsExpandTrigger = "<C-j>"
-call pathogen#infect()
 
 " Use dark solarized color theme (slightly modified).
 set background=dark
@@ -330,18 +358,6 @@ function! DeleteTrailingWhitespace()
     call cursor(line, col)
 endfunction
 
-function! VsplitAlternatePyramidFile()
-  let current_path = bufname("%")
-  let current_directory = fnamemodify(current_path, ":h:.")
-  let current_file = fnamemodify(current_path, ":t")
-  let test_path = "tests/" . current_directory . "/" . "test_" . current_file
-  exe "vsplit " . test_path
-endfunction
-
-command! AV call VsplitAlternatePyramidFile()
-
-nnoremap <Leader>v :AV<CR>
-
 nnoremap <silent> <Leader>w :call DeleteTrailingWhitespace()<CR>
 
 function! DeleteHiddenBuffers()
@@ -355,12 +371,6 @@ endfunction
 
 " Populate quickfix window with FIXME/TODO.
 command! Fixme Ack 'fixme|todo'
-
-" Powerline
-" FIXME: figure out why this doesn't work in after/plugin/Powerline.vim.
-let g:Powerline_symbols='fancy'
-let g:Powerline_theme = 'fweep' " Disable encoding and newline indicators.
-let g:Powerline_colorscheme = 'skwp'
 
 if filereadable('.vimrc-project') | source .vimrc-project | endif
 
