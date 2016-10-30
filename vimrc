@@ -15,25 +15,28 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'scrooloose/nerdtree'
+" Plugin 'scrooloose/nerdtree'
 Plugin 'pangloss/vim-javascript'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'mustache/vim-mustache-handlebars'
+" Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'mxw/vim-jsx'
-Plugin 'vim-scripts/bufkill.vim'
+" bufkill doesn't get along with netrw; disabling pending bugfix https://github.com/qpkorr/vim-bufkill/issues/11
+" Plugin 'qpkorr/vim-bufkill'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-abolish'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-endwise'
-Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-vinegar'
+" Plugin 'kchmck/vim-coffee-script'
+Plugin 'scrooloose/syntastic'
 
 " Needs to be after Powerline to override its tabline wrongness.
 Plugin 'fweep/vim-tabber'
@@ -178,7 +181,9 @@ set wildmenu
 set wildmode=list:longest,list:full
 
 " Ignore files matching these patterns when completing.
-set wildignore=.git,*.swp,*/tmp/*
+set wildignore+=*/.git
+set wildignore+=*/*.swp
+set wildignore+=*/tmp/*
 
 " Ignore some sources for faster autocompletion of tags.
 " Current file, other open windows/buffers, included files, tags.
@@ -245,48 +250,48 @@ nnoremap <Leader><space> :nohlsearch<CR>
 nnoremap / /\v
 vnoremap / /\v
 
-if has("cscope")
-  "TODO: turn this all into a plugin.
+" if has("cscope")
+"   "TODO: turn this all into a plugin.
 
-  set nocscopetag
-  set cscopequickfix=s-,c-,d-,i-,t-,e-
-  set nocscopeverbose
-  if filereadable(".git/cscope.out")
-    cscope add .git/cscope.out
-  endif
-  set cscopeverbose
+"   set nocscopetag
+"   set cscopequickfix=s-,c-,d-,i-,t-,e-
+"   set nocscopeverbose
+"   if filereadable(".git/cscope.out")
+"     cscope add .git/cscope.out
+"   endif
+"   set cscopeverbose
 
-  "TODO: figure out which of these are useless in Ruby and disable them.
-  nnoremap <Leader>fs :cscope find s <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
-  nnoremap <Leader>fg :cscope find g <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
-  nnoremap <Leader>fc :cscope find c <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
-  nnoremap <Leader>ft :cscope find t <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
-  nnoremap <Leader>fe :cscope find e <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
-  nnoremap <Leader>ff :cscope find f <C-R>=expand("<cfile>")<CR><CR>:botright cwindow<CR>
-  nnoremap <Leader>fd :cscope find d <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
-  nnoremap <Leader>fi :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>:botright cwindow<CR>
-  "TODO: figure out how to get cstag output in quickfix or a popup menu.
-  map <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
+"   "TODO: figure out which of these are useless in Ruby and disable them.
+"   nnoremap <Leader>fs :cscope find s <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+"   nnoremap <Leader>fg :cscope find g <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+"   nnoremap <Leader>fc :cscope find c <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+"   nnoremap <Leader>ft :cscope find t <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+"   nnoremap <Leader>fe :cscope find e <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+"   nnoremap <Leader>ff :cscope find f <C-R>=expand("<cfile>")<CR><CR>:botright cwindow<CR>
+"   nnoremap <Leader>fd :cscope find d <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+"   nnoremap <Leader>fi :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>:botright cwindow<CR>
+"   "TODO: figure out how to get cstag output in quickfix or a popup menu.
+"   map <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
 
-  function! CscopeRebuild()
-    cscope kill .git/cscope.out
-    silent execute "!./.git/hooks/cscope"
-    if v:shell_error
-      redraw!
-      echohl ErrorMsg | echo "Unable to run cscope command." | echohl None
-    else
-      if filereadable(".git/cscope.out")
-        redraw!
-        cscope add .git/cscope.out
-      else
-        redraw!
-        echohl ErrorMsg | echo "Unable to read cscope database." | echohl None
-      endif
-    endif
-  endfunction
+"   function! CscopeRebuild()
+"     cscope kill .git/cscope.out
+"     silent execute "!./.git/hooks/cscope"
+"     if v:shell_error
+"       redraw!
+"       echohl ErrorMsg | echo "Unable to run cscope command." | echohl None
+"     else
+"       if filereadable(".git/cscope.out")
+"         redraw!
+"         cscope add .git/cscope.out
+"       else
+"         redraw!
+"         echohl ErrorMsg | echo "Unable to read cscope database." | echohl None
+"       endif
+"     endif
+"   endfunction
 
-  command! Cscope call CscopeRebuild()
-endif
+"   command! Cscope call CscopeRebuild()
+" endif
 
 " Make <Home> alternately jump between column 0 and the first non-whitespace column.
 nnoremap <silent> <Home> :call Home()<CR>
