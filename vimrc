@@ -22,6 +22,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-surround'
 " Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ConradIrwin/vim-bracketed-paste'
@@ -297,14 +298,16 @@ vnoremap / /\v
 nnoremap <silent> <Home> :call Home()<CR>
 inoremap <silent> <Home> <C-O>:call Home()<CR>
 
-function Home()
-    let curcol = wincol()
-    normal ^
-    let newcol = wincol()
-    if newcol == curcol
-        normal 0
-    endif
-endfunction
+if !exists("*Home")
+  function Home()
+      let curcol = wincol()
+      normal ^
+      let newcol = wincol()
+      if newcol == curcol
+          normal 0
+      endif
+  endfunction
+endif
 
 " Open help in a vertical split.
 cnoreabbrev <expr> help getcmdtype() == ':' && getcmdline() == 'help' ? 'vert bo h' : 'help'
@@ -322,17 +325,19 @@ nnoremap <C-s><C-r> :OpenSession<CR>
 
 autocmd QuickFixCmdPost *grep* cwindow
 
-function! LoadAndDisplayRSpecQuickfix()
-  let quickfix_filename = "../../.git/quickfix.out"
-  if filereadable(quickfix_filename) && getfsize(quickfix_filename) != 0
-    silent execute ":cfile " . quickfix_filename
-    botright cwindow
-    cc
-  else
-    redraw!
-    echohl WarningMsg | echo "Quickfix file " . quickfix_filename . " is missing or empty." | echohl None
-  endif
-endfunction
+if !exists("*LoadAndDisplayRSpecQuickfix")
+  function! LoadAndDisplayRSpecQuickfix()
+    let quickfix_filename = "../../.git/quickfix.out"
+    if filereadable(quickfix_filename) && getfsize(quickfix_filename) != 0
+      silent execute ":cfile " . quickfix_filename
+      botright cwindow
+      cc
+    else
+      redraw!
+      echohl WarningMsg | echo "Quickfix file " . quickfix_filename . " is missing or empty." | echohl None
+    endif
+  endfunction
+endif
 
 noremap <Leader>q :call LoadAndDisplayRSpecQuickfix()<CR>
 
@@ -344,17 +349,21 @@ command! Vvimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | botright vspl
 command! Svimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | split ~/.vimrc | endif
 command! Vimrc  Vvimrc
 
-function! CurrentBufferIsEmpty()
-  return line('$') == 1 && getline(1) == ''
-endfunction
+if !exists("*CurrentBufferIsEmpty")
+  function CurrentBufferIsEmpty()
+    return line('$') == 1 && getline(1) == ''
+  endfunction
+endif
 
-function DeleteHiddenBuffers()
+if !exists("*DeleteHiddenBuffers")
+  function DeleteHiddenBuffers()
     let tpbl=[]
     call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
     for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-        silent execute 'bwipeout' buf
+      silent execute 'bwipeout' buf
     endfor
-endfunction
+  endfunction
+endif
 
 function! DeleteTrailingWhitespace()
     let line = line(".")
