@@ -218,6 +218,12 @@ set previewheight=20
 " Make ~ for case-swapping require a motion by default.
 set tildeop
 
+" Faster window switching
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
 " Disable <F1> help because I always fat-finger <Esc> on tiny keyboards.
 nnoremap <F1> <Nop>
 
