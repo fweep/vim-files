@@ -61,13 +61,19 @@ highlight Folded cterm=NONE
 let mapleader = ','
 
 " Honor modeline settings in files.
-set modeline
+set modeline modelines=5
+
+" Disable automatic comment leader insertion except on textwidth wrap
+set formatoptions-=ro
 
 " Keep files open even if there's no active window into them.
 set hidden
 
 " Save 1000 lines of history.
 set history=1000
+
+" Yank to system clipboard.
+set clipboard=unnamed
 
 " Replace tabs with the appropriate number of spaces in insert mode.
 set expandtab
@@ -316,8 +322,8 @@ if !exists("*Home")
 endif
 
 " Open help in a vertical split.
-cnoreabbrev <expr> help getcmdtype() == ':' && getcmdline() == 'help' ? 'vert bo h' : 'help'
-cnoreabbrev <expr> h getcmdtype() == ':' && getcmdline() == 'h' ? 'vert bo h' : 'h'
+cnoreabbrev <expr> vhelp getcmdtype() == ':' && getcmdline() == 'vhelp' ? 'vert bo h' : 'vhelp'
+cnoreabbrev <expr> vh getcmdtype() == ':' && getcmdline() == 'vh' ? 'vert bo h' : 'vh'
 
 cnoremap <C-a> <Home>
 
