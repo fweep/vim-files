@@ -36,6 +36,7 @@ Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-repeat'
 " Plugin 'kchmck/vim-coffee-script'
 Plugin 'scrooloose/syntastic'
 
