@@ -225,11 +225,18 @@ set previewheight=20
 " Make ~ for case-swapping require a motion by default.
 set tildeop
 
+" Map jk to <Esc> in insert mode; disable <Esc> in insert mode.
+inoremap jk <Esc>
+inoremap <Esc> <nop>
+
 " Faster window switching
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" Map <Leader>l to redraw since <C-l> mapping was changed.
+nnoremap <silent> <Leader>l :redraw!<CR>
 
 " Disable <F1> help because I always fat-finger <Esc> on tiny keyboards.
 nnoremap <F1> <Nop>
@@ -258,7 +265,7 @@ nnoremap Y y$
 nnoremap X "_D
 
 " Toggle search highlighting off more easily.
-nnoremap <Leader><space> :nohlsearch<CR>
+nnoremap <silent> <space> :nohlsearch<CR>
 
 " Default to "very magic" mode for searching.
 nnoremap / /\v
