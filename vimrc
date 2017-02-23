@@ -39,6 +39,7 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-repeat'
 " Plugin 'kchmck/vim-coffee-script'
 Plugin 'scrooloose/syntastic'
+Plugin 'elixir-lang/vim-elixir'
 
 " Needs to be after Powerline to override its tabline wrongness.
 Plugin 'fweep/vim-tabber'
