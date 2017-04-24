@@ -226,7 +226,6 @@ set tildeop
 
 " Map jk to <Esc> in insert mode; disable <Esc> in insert mode.
 inoremap jk <Esc>
-inoremap <Esc> <nop>
 
 " Faster window switching
 nnoremap <C-j> <C-w>j
