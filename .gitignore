@@ -4,6 +4,6 @@ sessions/
 undo/*
 !undo/.keep
 viminfo
-bundle/
+bundle/*
 !bundle/.keep
 !bundle/Vundle.vim
