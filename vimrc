@@ -224,7 +224,7 @@ set previewheight=20
 " Make ~ for case-swapping require a motion by default.
 set tildeop
 
-" Map jk to <Esc> in insert mode; disable <Esc> in insert mode.
+" Map jk to <Esc> in insert mode.
 inoremap jk <Esc>
 
 " Faster window switching
