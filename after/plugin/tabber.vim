@@ -7,10 +7,10 @@ set tabline=%!tabber#TabLine()
 
 nnoremap <C-t>              :exe tabpagenr('$') . "TabberNew"<CR>
 nnoremap <leader>.          :TabberSelectLastActive<CR>
-nnoremap <leader>tc         :tabclose<CR>
-nnoremap <leader>tl         :TabberShiftLeft<CR>
-nnoremap <leader>tr         :TabberShiftRight<CR>
-nnoremap <leader>ts         :TabberSwap<CR>
+" nnoremap <leader>tc         :tabclose<CR>
+" nnoremap <leader>tl         :TabberShiftLeft<CR>
+" nnoremap <leader>tr         :TabberShiftRight<CR>
+" nnoremap <leader>ts         :TabberSwap<CR>
 nnoremap <silent> <Leader>1 :tabnext 1<CR>
 nnoremap <silent> <Leader>2 :tabnext 2<CR>
 nnoremap <silent> <Leader>3 :tabnext 3<CR>

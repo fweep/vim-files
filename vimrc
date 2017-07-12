@@ -16,7 +16,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'pangloss/vim-javascript'
+
+let g:buffergator_suppress_keymaps = 1
 Plugin 'jeetsukumaran/vim-buffergator'
+
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-eunuch'
@@ -38,6 +41,9 @@ Plugin 'tpope/vim-repeat'
 Plugin 'scrooloose/syntastic'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'majutsushi/tagbar'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-dispatch'
+Plugin 'thoughtbot/vim-rspec'
 
 " Needs to be after Powerline to override its tabline wrongness.
 Plugin 'fweep/vim-tabber'
