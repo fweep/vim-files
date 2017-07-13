@@ -44,6 +44,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-dispatch'
 Plugin 'thoughtbot/vim-rspec'
+Plugin 'christoomey/vim-tmux-navigator'
 
 " Needs to be after Powerline to override its tabline wrongness.
 Plugin 'fweep/vim-tabber'
@@ -369,8 +370,8 @@ autocmd BufRead,BufNewFile .tmux-osx.conf                   setfiletype tmux
 
 autocmd BufRead,BufNewFile README.md   setlocal wrap textwidth=72 formatoptions-=lc formatoptions+=t
 
-command! Vvimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | botright vsplit ~/.vimrc | endif
-command! Svimrc if CurrentBufferIsEmpty() | edit ~/.vimrc | else | split ~/.vimrc | endif
+command! Vvimrc if CurrentBufferIsEmpty() | edit ~/.vim/vimrc | else | botright vsplit ~/.vim/vimrc | endif
+command! Svimrc if CurrentBufferIsEmpty() | edit ~/.vim/vimrc | else | split ~/.vim/vimrc | endif
 command! Vimrc  Vvimrc
 
 if !exists("*CurrentBufferIsEmpty")
