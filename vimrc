@@ -44,7 +44,10 @@ Plugin 'majutsushi/tagbar'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-dispatch'
 Plugin 'thoughtbot/vim-rspec'
-Plugin 'christoomey/vim-tmux-navigator'
+" Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'sjl/gundo.vim'
 
 " Needs to be after Powerline to override its tabline wrongness.
 Plugin 'fweep/vim-tabber'
