@@ -79,8 +79,8 @@ set formatoptions-=ro
 " Keep files open even if there's no active window into them.
 set hidden
 
-" Save 1000 lines of history.
-set history=1000
+" Save 10000 lines of history.
+set history=10000
 
 " Yank to system clipboard.
 set clipboard=unnamed
@@ -158,7 +158,7 @@ set noerrorbells
 set visualbell t_vb=
 
 " Reduce the number of hit-enter prompts from status messages.
-set shortmess=aTI
+set shortmess=aTIF
 
 " Flash to matching paren/bracket/brace when matching pair is typed.
 set showmatch
