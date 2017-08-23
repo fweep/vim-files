@@ -1,3 +1,6 @@
 [submodule "vim-shared"]
 	path = vim-shared
 	url = git@github.com:fweep/vim-shared.git
+[submodule "bundle/Vundle.vim"]
+	path = bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
