@@ -81,18 +81,10 @@ endif
 " Save more history for marks, commands, searches, etc. between invocations.
 set viminfo='100,/1000,:1000,<50,s100,h,c
 
-" Shortcuts for editing Vim config file.
-command! Vvimrc if CurrentBufferIsEmpty() | edit ~/.vim/vimrc | else | botright vsplit ~/.vim/vimrc | endif
-command! Svimrc if CurrentBufferIsEmpty() | edit ~/.vim/vimrc | else | split ~/.vim/vimrc | endif
-command! Vimrc  Vvimrc
-
-if !exists("*CurrentBufferIsEmpty")
-  function CurrentBufferIsEmpty()
-    return line('$') == 1 && getline(1) == ''
-  endfunction
-endif
-
 " Local overrides.
-
 if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
+
+" Read project-specific vimrc.  NOTE: this is dangerous in downloaded projects,
+" and Vim already supports this functionality via 'exrc', but I'm using it for my
+" own projects.
 if filereadable('.vimrc-project') | source .vimrc-project | endif
