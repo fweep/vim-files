@@ -3,53 +3,8 @@
 " Be more Vimmy.
 set nocompatible
 
-filetype off
-
-" Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'pangloss/vim-javascript'
-
-let g:buffergator_suppress_keymaps = 1
-Plugin 'jeetsukumaran/vim-buffergator'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-surround'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'ConradIrwin/vim-bracketed-paste'
-Plugin 'mxw/vim-jsx'
-" bufkill doesn't get along with netrw; disabling pending bugfix https://github.com/qpkorr/vim-bufkill/issues/11
-" Plugin 'qpkorr/vim-bufkill'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-abolish'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-repeat'
-Plugin 'scrooloose/syntastic'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'majutsushi/tagbar'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'tpope/vim-dispatch'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'sjl/gundo.vim'
-
-" Needs to be after Powerline to override its tabline wrongness.
-Plugin 'fweep/vim-tabber'
-Plugin 'fweep/vim-cscope'
-
-call vundle#end()
+" Shared plugins.
+source $HOME/.vim/vim-shared/plugins.vim
 
 " Turn on syntax highlighting.
 syntax enable
