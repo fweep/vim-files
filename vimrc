@@ -1,7 +1,10 @@
-" .vimrc
+" ~/.vim/vimrc
 
 " Be more Vimmy.
 set nocompatible
+
+" Add vim-shared to runtimepath for autoload.
+set runtimepath+=$HOME/.config/nvim/vim-shared
 
 " Shared plugins.
 source $HOME/.vim/vim-shared/plugins.vim
@@ -12,8 +15,6 @@ syntax enable
 " Auto-load plugins and indent files based on filetype.
 filetype plugin indent on
 
-runtime macros/matchit.vim
-
 " Shared options.
 source $HOME/.vim/vim-shared/options.vim
 
@@ -23,23 +24,8 @@ source $HOME/.vim/vim-shared/theme.vim
 " Shared key mappings/bindings.
 source $HOME/.vim/vim-shared/mappings.vim
 
-" Vim-specific config.
+" This probably belongs in shared/options.vim or something.
+runtime macros/matchit.vim
 
-" Support SGR mouse if available, fall back to xterm2 mouse.
-if has("mouse_sgr")
-  " Allows mouse clicking beyond terminal column 222.
-  set ttymouse=sgr
-else
-  set ttymouse=xterm2
-endif
-
-" Save more history for marks, commands, searches, etc. between invocations.
-set viminfo='100,/1000,:1000,<50,s100,h,c
-
-" Local overrides.
-if filereadable(expand('~/.vim-local/vimrc-local')) | source ~/.vim-local/vimrc-local | endif
-
-" Read project-specific vimrc.  NOTE: this is dangerous in downloaded projects,
-" and Vim already supports this functionality via 'exrc', but I'm using it for my
-" own projects.
-if filereadable('.vimrc-project') | source .vimrc-project | endif
+" Add vim-shared/after to override plugin defaults.
+set runtimepath+=$HOME/.config/nvim/vim-shared/after
