@@ -1,3 +1,3 @@
 [submodule "vim-shared"]
 	path = vim-shared
-	url = git@github.com:fweep/vim-shared.git
+	url = https://github.com/fweep/vim-shared.git
