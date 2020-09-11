@@ -1,3 +1,4 @@
 [submodule "vim-shared"]
 	path = vim-shared
 	url = https://github.com/fweep/vim-shared.git
+	branch = master
